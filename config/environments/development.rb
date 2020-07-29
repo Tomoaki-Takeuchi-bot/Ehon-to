@@ -63,4 +63,7 @@ Rails.application.configure do
   # --追加事項（ウェブコンソール）--
   # 172.16.0.0-172.31.255.255まで
   config.web_console.whitelisted_ips = %w[172.16.0.0/12]
+
+  # --追加事項（deviseインストール) --
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
