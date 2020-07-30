@@ -4,10 +4,10 @@
 #
 #  id           :bigint           not null, primary key
 #  author_image :string
-#  author_name  :string
+#  author_name  :string           not null
 #  image        :string
 #  isbn         :integer
-#  name         :string
+#  name         :string           not null
 #  price        :integer
 #  publisher    :string
 #  created_at   :datetime         not null

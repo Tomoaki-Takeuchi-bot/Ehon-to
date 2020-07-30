@@ -26,11 +26,11 @@
       </div>
       <div>
         <%= f.label :price, '書籍価格' %>
-        <%= f.text_field :price, class:'form-control', id: 'book_price' %>
+        <%= f.number_field :price, class:'form-control', id: 'book_price' %>
       </div>
       <div>
         <%= f.label :isbn, '書籍分類コード' %>
-        <%= f.text_field :isbn, class:'form-control', id: 'book_isbn' %>
+        <%= f.number_field :isbn, class:'form-control', id: 'book_isbn' %>
       </div>
       <div class="d-flex justify-content-center col-lg-4 col-md-6 mx-auto mb-3">
           <%= f.submit nil, class: 'btn btn-primary form-control' %>

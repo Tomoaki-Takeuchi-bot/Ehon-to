@@ -4,10 +4,10 @@
 #
 #  id           :bigint           not null, primary key
 #  author_image :string
-#  author_name  :string
+#  author_name  :string           not null
 #  image        :string
 #  isbn         :integer
-#  name         :string
+#  name         :string           not null
 #  price        :integer
 #  publisher    :string
 #  created_at   :datetime         not null
@@ -19,7 +19,8 @@ class Book < ApplicationRecord
 
   # バリデーション設定
   # （presence: 書籍名、画像イメージ、作者名のみ）
-  validates :name, presence: true, length: { maximum: 100 }
+  validates :name, presence: true, length: { maximum: 200 }
+  validates :author_name, presence: true
 
   # <TODO>
   # 画像イメージ機能実装後に設定

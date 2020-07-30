@@ -16,7 +16,7 @@ class BooksController < ApplicationController
   def create
     book = Book.new(book_params)
     book.save!
-    redirect_to books_path, notice: "本「#{book.name}」をとうろくしました。"
+    redirect_to books_path, notice: "本「#{book.name}」を登録しました。"
   end
 
   def edit
