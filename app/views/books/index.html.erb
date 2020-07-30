@@ -1,0 +1,29 @@
+<% provide :title, 'すべての本' %>
+
+<div class="container-fluid pt-3">
+  <h1>すべての本</h1>
+  <%= link_to '本を登録する', new_book_path, class: 'btn btn-primary' %>
+</div>
+
+<div class="mb-3">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>"本の名前"</th>
+      <th>”作成日時”</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+    <tr>
+      <td><%= link_to book.name, book %></td>
+      <td><%= book.created_at %></td>
+      <td>
+      <%= link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3' %>
+      <%= link_to '削除', book, method: :delete, data: { confirm: "本「#{book.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
