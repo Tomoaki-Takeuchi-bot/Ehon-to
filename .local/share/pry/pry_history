@@ -1,0 +1,8 @@
+book = Book.new(name: 吾輩は猫である)
+user = User.new(name: taro)
+exit
+@user
+user_params
+book = Book.new(name:'吾輩は猫である')
+pry
+user_params
