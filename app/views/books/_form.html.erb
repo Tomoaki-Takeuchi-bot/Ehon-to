@@ -1,0 +1,40 @@
+<!-- TODO 以下パーシャル移行予定 -->
+<div class="container post_form ">
+
+    <!-- TODO -->
+    <!-- 画像添付機能は別スケジュールにて添付 -->
+  <%= form_with model: book, local: true do |f| %>
+    <div class='form-group row'>
+      <!-- local設定
+      JS Ajexリモート無効のフォーム local: true -->
+      <div class='col-md-8'>
+        <%= f.label :name, "本の名前" %>
+        <%= f.text_field :name, class: 'form-control', id: 'book_name' %>
+      </div>
+      <div class='col-md-8'>
+        <%= f.file_field :image, accept: 'image/jpg,image/jpeg,image/gif,image.png', class: 'form-control' %>
+      </div>
+    </div>
+
+      <div>
+        <%= f.label :publisher, '出版社' %>
+        <%= f.text_field :publisher, class:'form-control', id: 'book_publisher' %>
+      </div>
+      <div>
+        <%= f.label :author_name, '作者' %>
+        <%= f.text_field :author_name, class:'form-control', id: 'book_author_name' %>
+      </div>
+      <div>
+        <%= f.label :price, '書籍価格' %>
+        <%= f.text_field :price, class:'form-control', id: 'book_price' %>
+      </div>
+      <div>
+        <%= f.label :isbn, '書籍分類コード' %>
+        <%= f.text_field :isbn, class:'form-control', id: 'book_isbn' %>
+      </div>
+      <div class="d-flex justify-content-center col-lg-4 col-md-6 mx-auto mb-3">
+          <%= f.submit nil, class: 'btn btn-primary form-control' %>
+      </div>
+    </div>
+  <% end %>
+</div>
