@@ -1,9 +1,9 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort('The Rails environment is running in production mode!') if Rails.env.production?
+abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -20,7 +20,9 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+
+# --追加事項 support配下のテスト読み込み --
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -30,7 +32,16 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
 RSpec.configure do |config|
+  # -- 追加事項  --
+  #create,build を使えるようにする
+  config.include FactoryBot::Syntax::Methods
+  # テストで使う共通関数をまとめたModule
+  config.include SpecSupport
+  # Deviseでのログイン
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -61,4 +72,52 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # --追加項目 --
+  # Capybaraのセッティング
+  config.before(:each, type: :system) do
+    Capybara.default_driver    = :selenium_chrome
+    Capybara.javascript_driver = :selenium_chrome
+    Capybara.server_host = Socket.ip_address_list.detect(&:ipv4_private?).ip_address
+    Capybara.server_port = 3001
+    Capybara.default_max_wait_time = 5
+    Capybara.ignore_hidden_elements = true
+
+    Capybara.register_driver :selenium_chrome do |app|
+      opts = {
+        desired_capabilities: :chrome,
+        browser:              :remote,
+        url:                  ENV["SELENIUM_REMOTE_URL"],
+      }
+      Capybara::Selenium::Driver.new(app, opts)
+    end
+
+    driven_by Capybara.javascript_driver
+    host! "http://#{Capybara.server_host}:#{Capybara.server_port}"
+  end
+
+  # --追加項目--
+  # coverageのエクスポート
+  # coverageテスト結果出力が必要な際は env COVERAGE=true を渡してください。
+  # 下記はコマンド例
+  # example: docker-compose run --rm -e COVERAGE=true web bundle exec rspec
+  if ENV["COVERAGE"]
+    require 'simplecov'
+
+    # カバレッジが90以下は失敗
+    SimpleCov.minimum_coverage 90
+
+    # カバレッジの出力先変更
+    SimpleCov.coverage_dir('tmp/cov')
+
+    SimpleCov.start do
+      # spec dir を除く
+      add_filter '/spec/'
+
+      # group folders
+      # you can't get coverage for view. @see https://github.com/colszowka/simplecov/issues/38
+      add_group 'Models', 'app/models'
+      add_group 'Controllers', 'app/controllers'
+    end
+  end
 end

@@ -82,7 +82,7 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  gem 'webdrivers'
+  gem 'webdrivers', require: !ENV['SELENIUM_REMOTE_URL']
 
   # =====追加項目=====
   # CircleCIでRspcのテストレポートを生成する
