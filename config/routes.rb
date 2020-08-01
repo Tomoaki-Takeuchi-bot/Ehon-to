@@ -10,6 +10,14 @@
 #                                       PATCH  /books/:id(.:format)                                                                     books#update
 #                                       PUT    /books/:id(.:format)                                                                     books#update
 #                                       DELETE /books/:id(.:format)                                                                     books#destroy
+#                              comments GET    /comments(.:format)                                                                      comments#index
+#                                       POST   /comments(.:format)                                                                      comments#create
+#                           new_comment GET    /comments/new(.:format)                                                                  comments#new
+#                          edit_comment GET    /comments/:id/edit(.:format)                                                             comments#edit
+#                               comment GET    /comments/:id(.:format)                                                                  comments#show
+#                                       PATCH  /comments/:id(.:format)                                                                  comments#update
+#                                       PUT    /comments/:id(.:format)                                                                  comments#update
+#                                       DELETE /comments/:id(.:format)                                                                  comments#destroy
 #                      new_user_session GET    /users/sign_in(.:format)                                                                 users/sessions#new
 #                          user_session POST   /users/sign_in(.:format)                                                                 users/sessions#create
 #                  destroy_user_session DELETE /users/sign_out(.:format)                                                                users/sessions#destroy
@@ -51,6 +59,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   resources :books
+  resources :comments
+
   devise_for :users,
              controllers: {
                sessions: 'users/sessions', registrations: 'users/registrations'

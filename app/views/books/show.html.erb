@@ -31,3 +31,19 @@
 </table>
 <%= link_to '編集', edit_book_path, class: 'btn btn-primary mr-3' %>
 <%= link_to '削除', @book, method: :delete, data: { confirm: "本「#{@book.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %>
+
+<div class="d-comment-content">
+  <% if user_signed_in? %>
+    <div class="d-comment__Box">
+      <p class="d-comment__Title">コメント入力（５００文字以内）</p>
+      <%= form_with model: @comment do |f| %>
+      <%= f.hidden_field :book_id %>
+        <div class="form-group">
+          <%= f.text_area :comment, class: "form-control", rows: 20 %>
+        </div>
+      <%= f.submit nil, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to "削除", comment, method: :delete, data: { confirm: "コメントを削除します。" }, class: 'btn btn-danger' %>
+</div>

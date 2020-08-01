@@ -7,6 +7,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @comment = Comment.new(book_id: @book.id)
   end
 
   def new
@@ -14,7 +15,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(book_params)
+    book = Book.new(book_params.merge(user_id: current_user.id))
     book.save!
     redirect_to books_path, notice: "本「#{book.name}」を登録しました。"
   end

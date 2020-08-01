@@ -12,10 +12,19 @@
 #  publisher    :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  user_id      :bigint
+#
+# Indexes
+#
+#  index_books_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 class Book < ApplicationRecord
-  # <TODO>
-  # アソシエーション設定は別スケジュールにて実装
+  belongs_to :user
+  has_many :comments, dependent: :destroy
 
   # バリデーション設定
   # （presence: 書籍名、画像イメージ、作者名のみ）
