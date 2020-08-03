@@ -1,35 +1,23 @@
 class CommentsController < ApplicationController
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
+  before_action :set_book
 
   def create
-    comment = Comment.new(comment_params)
-    comment.save!
-    redirect_to books_url, notice: "コメントを登録しました。"
+    @book.comments.new(comment_params).save
+    render :remote_js
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def desroy
-    comment = Comment.find(params[:id])
-    comment.destroy
-    flash[:success] = "コメントが削除されました。"
-    redirect_to commet.book
+  def destroy
+    @book.comments.destroy(params[:id]) if current_user.id == @book.comments.find(params[:id]).user_id
+    render :remote_js
   end
 
   private
 
-  def comment_params
-    params.require(:comment).permit(:comment, :book_id, :user_id)
-  end
+    def set_book
+      @book = Book.find_with_comments(params[:book_id])
+    end
+
+    def comment_params
+      params.require(:comment).permit(:comment).merge(user_id: current_user.id)
+    end
 end

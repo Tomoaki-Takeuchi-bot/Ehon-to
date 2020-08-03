@@ -58,8 +58,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :books
-  resources :comments
+  resources :books do
+    resources :comments, only: %i[create destroy]
+  end
 
   devise_for :users,
              controllers: {

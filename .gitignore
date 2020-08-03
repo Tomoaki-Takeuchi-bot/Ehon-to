@@ -36,3 +36,4 @@ yarn-debug.log*
 .yarn-integrity
 .bash_history
 memo.md
+/.local

@@ -31,6 +31,10 @@ class Book < ApplicationRecord
   validates :name, presence: true, length: { maximum: 200 }
   validates :author_name, presence: true
 
+  scope :find_with_comments, -> (id) {
+    includes(comments: :user).find(id)
+  }
+
   # <TODO>
   # 画像イメージ機能実装後に設定
   # validates :image, presende: true
