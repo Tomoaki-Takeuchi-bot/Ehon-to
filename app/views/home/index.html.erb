@@ -2,7 +2,7 @@
 <h2>仮設トップページです。</h2>
 
 <% if user_signed_in? %>
-<h3>サインインされてます。コンテンツをお楽しみください。</h3>
+<h3><%= link_to("本の一覧", books_path) %></h3>
 <% else %>
 <h3>登録をお願いします。</h3>
 <h4><%= link_to("新しいユーザー", new_user_registration_path) %></h4>
