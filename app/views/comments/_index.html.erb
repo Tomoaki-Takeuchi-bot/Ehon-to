@@ -1,0 +1,13 @@
+<h4>コメント一覧</h4>
+
+<% @book.comments.each do |comment| %>
+<div>
+
+  <strong><%= comment.user.name %></strong>
+  <small><%= comment.created_at.strftime("%Y/%m/%d") %></small>
+  <% if comment.user == current_user %>
+    <%= link_to "削除", book_comment_path(@book, comment), class:'btn btn-sm btn-outline-danger', method: :delete, remote: true %>
+  <% end %>
+  <p><%= comment.comment %></p>
+</div>
+<% end %>
