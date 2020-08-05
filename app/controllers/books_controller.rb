@@ -36,6 +36,12 @@ class BooksController < ApplicationController
     redirect_to books_url, notice: "本「#{book.name}」を削除しました。"
   end
 
+  def favorite
+    @book = Book.includes(:favorites).find(params[:book_id])
+    @book.has_favorites?(current_user) ? @book.unlike(current_user.id) : @book.like(current_user.id)
+    render :favorite
+  end
+
   private
 
   def book_params

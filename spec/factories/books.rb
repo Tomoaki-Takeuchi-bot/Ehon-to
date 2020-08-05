@@ -32,6 +32,6 @@ FactoryBot.define do
     author_name { 'レオ＝レオニ' }
     author_image { File.new("#{Rails.root}/spec/factories/images/test2.png") }
     price { 600 }
-    isbn { 4-7690-2017-1 }
+    isbn { 4 - 7690 - 2017 - 1 }
   end
 end

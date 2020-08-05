@@ -32,4 +32,5 @@
 <%= link_to '編集', edit_book_path, class: 'btn btn-primary mr-3' %>
 <%= link_to '削除', @book, method: :delete, data: { confirm: "本「#{@book.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %>
 
+<%= render partial: 'favorite' %>
 <%= render partial: 'comments/new' %>
