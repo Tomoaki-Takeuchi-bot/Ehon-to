@@ -6,7 +6,7 @@
 #  author_image :string
 #  author_name  :string           not null
 #  image        :string
-#  isbn         :integer
+#  isbn         :string
 #  name         :string           not null
 #  price        :integer
 #  publisher    :string

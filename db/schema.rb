@@ -8,9 +8,10 @@
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
-# It"s strongly recommended that you check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_805_002_634) do
+ActiveRecord::Schema.define(version: 2020_08_06_082743) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,7 +22,7 @@ ActiveRecord::Schema.define(version: 20_200_805_002_634) do
     t.string "author_name", null: false
     t.string "author_image"
     t.integer "price"
-    t.integer "isbn"
+    t.string "isbn"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"

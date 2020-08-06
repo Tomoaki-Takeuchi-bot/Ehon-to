@@ -6,7 +6,7 @@
 #  author_image :string
 #  author_name  :string           not null
 #  image        :string
-#  isbn         :integer
+#  isbn         :string
 #  name         :string           not null
 #  price        :integer
 #  publisher    :string
@@ -32,6 +32,16 @@ FactoryBot.define do
     author_name { 'レオ＝レオニ' }
     author_image { File.new("#{Rails.root}/spec/factories/images/test2.png") }
     price { 600 }
-    isbn { 4 - 7690 - 2017 - 1 }
+    isbn { "4-7690-2017-1" }
+
+    trait :book_with_comment do
+      after(:create) do | book |
+        3.times { create(:comment, book: book) }
+      end
+    end
+
+    trait :with_image do
+      image { File.new("#{Rails.root}/spec/factories/images/test.png") }
+    end
   end
 end
