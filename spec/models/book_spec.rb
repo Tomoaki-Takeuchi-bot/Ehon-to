@@ -6,7 +6,7 @@
 #  author_image :string
 #  author_name  :string           not null
 #  image        :string
-#  isbn         :integer
+#  isbn         :string
 #  name         :string           not null
 #  price        :integer
 #  publisher    :string
@@ -26,9 +26,47 @@ require 'rails_helper'
 
 RSpec.describe Book, type: :model do
   let(:book) { create(:book) }
+  let(:user) { create(:user) }
 
   it '有効ファクトリーの確認' do
     expect(book).to be_valid
   end
 
+  context "search" do
+    let(:book) { create(:book, :book_with_comment) }
+    subject { Book.find_with_comments(book.id) }
+    it "success" do
+      expect(subject.comments.size).to eq(3)
+    end
+  end
+
+  context "has_favorites?" do
+    subject { book.has_favorites?(user) }
+
+    context 'has no favorites' do
+      it "false" do
+        expect(subject).to eq(false)
+      end
+    end
+
+    context 'has favorites' do
+      before {
+        book.like(user.id)
+      }
+      it "true" do
+        expect(subject).to eq(true)
+      end
+    end
+  end
+
+  context "like/unlike" do
+    it "anable to switch like unlike" do
+      book.like(user.id)
+      expect(book.favorites.size).to eq(1)
+      expect(book.favorites.first.user_id).to eq(user.id)
+
+      book.unlike(user.id)
+      expect(book.favorites.size).to eq(0)
+    end
+  end
 end

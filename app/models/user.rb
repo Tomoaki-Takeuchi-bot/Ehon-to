@@ -27,9 +27,12 @@ class User < ApplicationRecord
          :validatable
 
   attr_accessor :current_password
+
   validates :name, presence: true, length: { maximum: 30 }
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   before_validation { email.downcase! }
+
   validates :email,
             presence: true,
             uniqueness: true,
@@ -37,4 +40,8 @@ class User < ApplicationRecord
             format: {
               with: VALID_EMAIL_REGEX
             }
+
+  has_many :books, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 end

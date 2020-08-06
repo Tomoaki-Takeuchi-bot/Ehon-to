@@ -60,6 +60,7 @@ Rails.application.routes.draw do
 
   resources :books do
     resources :comments, only: %i[create destroy]
+    post :favorite
   end
 
   devise_for :users,
