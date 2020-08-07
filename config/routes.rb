@@ -64,7 +64,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users,
-             controllers: {
-               sessions: 'users/sessions', registrations: 'users/registrations'
-             }
+              controllers: {
+                sessions: 'users/sessions', registrations: 'users/registrations'
+              }
+
+  resources :relationships, only: [:create, :destroy]
+  resources :users
 end
