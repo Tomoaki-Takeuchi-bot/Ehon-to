@@ -9,6 +9,9 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 require("@fortawesome/fontawesome-free/js/all")
+require("bootstrap")
+require("jquery-ui-dist")
+require("tag-it")
 
 import "../stylesheets/application.scss"
 

@@ -27,6 +27,10 @@ class Book < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  # タグ設定
+  has_many :categories, through: :book_categories
+  has_many :book_categories, dependent: :destroy
+
   # バリデーション設定
   # （presence: 書籍名、画像イメージ、作者名のみ）
   validates :name, presence: true, length: { maximum: 200 }
@@ -48,6 +52,28 @@ class Book < ApplicationRecord
     favorite_id = favorites.find_by(user_id: favorite_user_id).id
     favorites.destroy(favorite_id)
   end
+
+  # --タグ機能--
+  def save_categories(tags)
+    # 現状カテゴリーの取得
+    current_tags = self.categories.pluck(:name) unless self.categories.nil?
+    # 古いカテゴリータグの取得
+    old_tags = current_tags - tags
+    # 新しいタグの取得
+    new_tags = tags - current_tags
+
+    # 古いタグを消去
+    old_tags.each do |old_name|
+      self.categories.delete Category.find_by(name:old_name)
+    end
+
+    # 新しいタグを作成
+    new_tags.each do |new_name|
+      article_category = Category.find_or_create_by(name:new_name)
+      self.categories << article_category
+    end
+  end
+
   # <TODO>
   # 画像イメージ機能実装後に設定
   # validates :image, presende: true
