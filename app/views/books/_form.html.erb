@@ -33,11 +33,8 @@
         <%= f.number_field :isbn, class:'form-control', id: 'book_isbn' %>
       </div>
 
-      <!-- タグ機能 -->
-      <div>
-        <%= f.label "タグ" %>
-        <%= f.text_field :tag_name, class:'form-control', id: 'tag-list' %>
-      </div>
+      <!-- TODOタグ機能 render-->
+      <%= render partial: 'tag' %>
 
       <div class="d-flex justify-content-center col-lg-4 col-md-6 mx-auto mb-3">
           <%= f.submit nil, class: 'btn btn-primary form-control' %>

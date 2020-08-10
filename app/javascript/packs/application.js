@@ -10,7 +10,7 @@ require("channels")
 require("jquery")
 require("@fortawesome/fontawesome-free/js/all")
 require("bootstrap")
-require("jquery-ui-dist")
+require("jquery-ui")
 require("tag-it")
 
 import "../stylesheets/application.scss"
