@@ -16,12 +16,12 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params.merge(user_id: current_user.id))
-    category_list = params[:category_list].split(",")
+    category_list = params[:category_list].to_s.split(",") #to_sにしないとエラー
     if @book.save
       @book.save_categories(category_list)
-      redirect_to books_path, notice: "本「#{book.name}」を登録しました。"
+      redirect_to books_path, notice: "本「#{@book.name}」を登録しました。"
     else
-      render 'book/new'
+      render 'books/new'
     end
   end
 
@@ -32,10 +32,10 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    category_list = params[:category_list].split(",")
+    category_list = params[:category_list].to_s.split(",") #to_sにしないとエラー
     if book.update(book_params)
       book.save_categories(category_list)
-      redirect_to books_url, notice: "「#{book.name}」の内容を更新しました。"
+      redirect_to books_url, notice: "「#{@book.name}」の内容を更新しました。"
     else
       render 'edit'
     end

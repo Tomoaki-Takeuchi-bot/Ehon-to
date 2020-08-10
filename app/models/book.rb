@@ -28,8 +28,8 @@ class Book < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   # タグ設定
-  has_many :categories, through: :book_categories
   has_many :book_categories, dependent: :destroy
+  has_many :categories, through: :book_categories
 
   # バリデーション設定
   # （presence: 書籍名、画像イメージ、作者名のみ）
