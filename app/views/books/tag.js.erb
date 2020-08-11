@@ -1,11 +1,20 @@
-$(document).on 'turbolinks:load', ->
-  $('#book-tags').tagit
-    fieldName:   'category_list'
+$(document).on('turbolinks:load', function() {
+  var category_list, category_string, error, i, len, results, tag;
+  $('#book-tags').tagit({
+    fieldName: 'category_list',
     singleField: true
-  $('#book-tags').tagit()
-  category_string = $("#category_hidden").val()
-  try
-    category_list = category_string.split(',')
-    for tag in category_list
-      $('#book-tags').tagit 'createTag', tag
-  catch error
+  });
+  $('#book-tags').tagit();
+  category_string = $("#category_hidden").val();
+  try {
+    category_list = category_string.split(',');
+    results = [];
+    for (i = 0, len = category_list.length; i < len; i++) {
+      tag = category_list[i];
+      results.push($('#book-tags').tagit('createTag', tag));
+    }
+    return results;
+  } catch (_error) {
+    error = _error;
+  }
+});
