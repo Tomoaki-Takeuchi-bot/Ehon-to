@@ -27,6 +27,9 @@ class Book < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  mount_uploader :image, ImageUploader
+
+  THUMBNAIL_SIZE = [150,150].freeze
   # バリデーション設定
   # （presence: 書籍名、画像イメージ、作者名のみ）
   validates :name, presence: true, length: { maximum: 200 }

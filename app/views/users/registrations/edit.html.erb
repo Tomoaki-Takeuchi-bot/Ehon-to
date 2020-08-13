@@ -4,6 +4,18 @@
 <%= render "users/shared/error_messages", resource: resource %>
 
 <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image %><br />
+    <% if resource.image? %>
+      <%= image_tag resource.image.thumb.url, id: 'image_present', class: 'avator' %>
+    <% else %>
+      <%= image_pack_tag 'no_avatar.jpg', id: 'image_present', class: 'avator' %>
+      <%= f.hidden_field :image_cache %>
+    <% end %>
+    <img class="hidden avator" id="image_prev" src="#">
+</div>
+
+<div class="field">
   <%= f.label :email %><br />
   <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
 </div>
