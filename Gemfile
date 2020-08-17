@@ -21,7 +21,7 @@ gem 'bootstrap', '~> 4.5'
 # 画像投稿用
 gem "carrierwave", "1.2.2"
 # リサイズ
-gem 'mini_magick', '~> 4.10', '>= 4.10.1'
+gem 'mini_magick'
 # ログイン機能
 gem 'devise', '~> 4.7', '>= 4.7.2'
 # devise日本語化
