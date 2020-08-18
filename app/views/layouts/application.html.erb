@@ -52,6 +52,12 @@
           <li class="nav-item">
             <%= link_to("ログアウト", destroy_user_session_path, method: :delete, class: "nav-link") %>
           </li>
+          <li class="nav-item">
+            <%= link_to("本の一覧", books_path, class: "nav-link") %>
+          </li>
+          <li class="nav-item">
+            <%= link_to("ユーザー：一覧", users_path, class: "nav-link") %>
+          </li>
           <% else %>
           <li class="nav-item">
             <%= link_to("Sign up", new_user_registration_path, class: "nav-link") %>

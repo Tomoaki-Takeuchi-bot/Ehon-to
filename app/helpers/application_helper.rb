@@ -22,4 +22,9 @@ module ApplicationHelper
       image_pack_tag(opts[:image] || 'no_image.png', class: opts[:class])
     end
   end
+
+  def follow_button(user)
+    label, key = current_user.following?(user) ? ["Unfollow", "secondary"] : ["Follow", "primary"]
+    link_to(label, user_follow_path(@user), method: :post, remote: true, class: "btn btn-#{key} btn-sm")
+  end
 end
