@@ -16,6 +16,7 @@
     </tr>
   </thead>
   <tbody>
+    <%= paginate @books %>
     <% @books.each do |book| %>
     <tr>
       <td><%= img_tag(book) %></td>
@@ -29,3 +30,4 @@
   </tbody>
   <% end %>
 </table>
+  <%= paginate @books %>
