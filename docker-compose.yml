@@ -33,6 +33,7 @@ services:
       SELENIUM_REMOTE_URL: http://chrome:4444/wd/hub
     ports:
       - "3000:3000"
+      - "3035:3035"
     tty: true
     links:
       - db

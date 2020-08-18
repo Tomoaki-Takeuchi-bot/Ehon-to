@@ -19,7 +19,9 @@ gem 'webpacker', '~> 4.0'
 # フレームワーク
 gem 'bootstrap', '~> 4.5'
 # 画像投稿用
-# gem "carrierwave", "1.2.2"
+gem "carrierwave", "1.2.2"
+# リサイズ
+gem 'mini_magick'
 # ログイン機能
 gem 'devise', '~> 4.7', '>= 4.7.2'
 # devise日本語化
@@ -63,6 +65,12 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   # =====追加項目=====
+  # assetsの削除に必要となる
+  # @sea https://github.com/rails/sprockets/issues/643
+  gem 'sprockets', '~> 3.7.2'
+  # 複数プロセスを束ねて管理するgem
+  # webpacker-dev-server
+  gem 'foreman', '~> 0.87.2'
   # スキーマ情報のコメントアウト
   gem 'annotate', '~> 3.1', '>= 3.1.1'
   # N＋1問題対応

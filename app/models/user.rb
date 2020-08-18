@@ -5,6 +5,7 @@
 #  id                     :bigint           not null, primary key
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  image                  :string
 #  name                   :string           not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -27,6 +28,8 @@ class User < ApplicationRecord
          :validatable
 
   attr_accessor :current_password
+
+  mount_uploader :image, ImageUploader
 
   validates :name, presence: true, length: { maximum: 30 }
 
