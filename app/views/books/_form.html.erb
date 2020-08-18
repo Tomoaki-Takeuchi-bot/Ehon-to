@@ -14,10 +14,18 @@
         <%= f.label :name, "本の名前" %>
         <%= f.text_field :name, class: 'form-control', id: 'book_name' %>
       </div>
-      <div class='col-md-8'>
-        <%= f.file_field :image, accept: 'image/jpg,image/jpeg,image/gif,image.png', class: 'form-control' %>
+
+      <div class="field">
+        <%= f.label :image %><br />
+        <%= f.file_field :image %><br />
+        <% if book.image? %>
+          <%= image_tag book.image.thumb.url, id: 'image_present' %>
+        <% else %>
+          <%= image_pack_tag 'no_image.png', id: 'image_present' %>
+          <%= f.hidden_field :image_cache %>
+        <% end %>
+        <img class="d-none" id="image_prev" src="#" width="150" height="150">
       </div>
-    </div>
 
       <div>
         <%= f.label :publisher, '出版社' %>
