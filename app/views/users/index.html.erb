@@ -1,0 +1,12 @@
+<h1>Users</h1>
+
+<%= paginate @users %>
+
+<% @users.each do |user| %>
+  <div class="my-3">
+    <%= avator_tag(user) %>
+    <%= link_to user.name, user, class: 'h2' %>
+  </div>
+<% end %>
+
+<%= paginate @users %>

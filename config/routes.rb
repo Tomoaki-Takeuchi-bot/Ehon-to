@@ -64,7 +64,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :users,
-             controllers: {
-               sessions: 'users/sessions', registrations: 'users/registrations'
-             }
+              controllers: {
+                sessions: 'users/sessions', registrations: 'users/registrations'
+              }
+
+  resources :users, only: %i[index show] do
+    post :follow
+  end
 end
