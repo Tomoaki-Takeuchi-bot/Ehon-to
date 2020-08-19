@@ -3,12 +3,23 @@
 </h2>
 
 <h5>
-  <strong>Name</strong> : <%= @user.name %>
+  <strong>名前</strong> : <%= @user.name %>
 </h5>
 
 <h5>
-  <strong>Email</strong> : <%= @user.email %>
+  <strong>メール</strong> : <%= @user.email %>
 </h5>
+
+<% if @user.id == current_user.id %>
+  <div class="my-4">
+    <h5>好きな本のタグリスト</h5>
+    <% favorites_group_by_tag(current_user.favorite_books).each do |tag, ids| %>
+      <%= link_to books_path(ids: ids) do %>
+        <span class="badge badge-primary my-2 mr-1 p-2"><%= tag %></span>  <%= ids.size %>
+      <% end %><br />
+    <% end %>
+  </div>
+<% end %>
 
 <div class="my-2">
   <% if @user.id == current_user.id %>

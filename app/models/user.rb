@@ -47,12 +47,15 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-
-  # ユーザーフォロー機能
+  # タグ機能（Userモデルからいいねした本を取得するためリレーション追加）
+  has_many :favorite_books, through: :favorites, source: :book
+  #---
+  # ユーザーフォロー機能---
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_relationships, source: :user
+  #---
 
   def follow(other_user_id)
     self.relationships.find_or_create_by(follow_id: other_user_id) unless self.id == other_user_id.to_i
