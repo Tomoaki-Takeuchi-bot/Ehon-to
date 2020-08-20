@@ -33,14 +33,12 @@ class Book < ApplicationRecord
   acts_as_taggable_on :tags
 
   TAGS = [
-    "entertainment",
-    "travel",
-    "fashion",
-    "food",
-    "lifestyle",
-    "sports",
-    "business",
-    "technology"
+    "ゆかいな話",
+    "ふしぎな話",
+    "こわい話",
+    "ためになる話",
+    "ないた話",
+    "こころがあったかい話",
   ].freeze
 #---
 

@@ -5,7 +5,7 @@ class BooksController < ApplicationController
     books = Book.includes(:user)
     books = books.where(id: params[:ids]) if params[:ids].present?
     books = books.tagged_with(params[:tag_list], any: true) if params[:tag_list].present?
-    @books = Book.page(params[:page]).per(5)
+    @books = books.page(params[:page]).per(5)
   end
 
   def show
