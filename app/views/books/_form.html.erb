@@ -16,6 +16,11 @@
       </div>
 
       <div class="field">
+        <%= f.label :tag_list %><br />
+        <%= f.select :tag_list, options_for_select(Book::TAGS, book.tag_list), {}, multiple: true, class: "enable-select2" %>
+      </div>
+
+      <div class="field">
         <%= f.label :image %><br />
         <%= f.file_field :image %><br />
         <% if book.image? %>

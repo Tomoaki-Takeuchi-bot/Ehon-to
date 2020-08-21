@@ -5,6 +5,16 @@
   <%= link_to '本を登録する', new_book_path, class: 'btn btn-primary' %>
 </div>
 
+<%= form_tag books_path, method: :get do %>
+  <div class="my-2">
+    <%= select_tag :tag_list, options_for_select(Book::TAGS), multiple: true, class: "enable-select2" %>
+  </div>
+  <div class="my-2">
+    <%= text_field_tag :q, "", placeholder: "キーワード" %>
+  </div>
+  <%= submit_tag "Search", class: "btn btn-outline-info btn-sm" %>
+<% end %>
+
 <div class="mb-3">
 <table class="table table-hover">
   <thead>

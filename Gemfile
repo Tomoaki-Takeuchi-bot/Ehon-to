@@ -10,7 +10,6 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'sass-rails', '>= 6'
-gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 4.0'
 # gem 'redis', '~> 4.0'
 # gem 'image_processing', '~> 1.2'
@@ -34,8 +33,8 @@ gem 'devise-i18n'
 # gem "font-awesome-sass", "~> 5.13"
 # pagenation
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
-# 画像ファイルのリサイズ
-# gem "mini_magick", "~> 4.10", ">= 4.10.1"
+# タグ機能
+gem 'acts-as-taggable-on', '~> 6.0'
 # railsの日本語化
 gem 'rails-i18n'
 # 日付バリデーション

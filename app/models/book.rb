@@ -29,6 +29,19 @@ class Book < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+# タグ設定---
+  acts_as_taggable_on :tags
+
+  TAGS = [
+    "ゆかいな話",
+    "ふしぎな話",
+    "こわい話",
+    "ためになる話",
+    "ないた話",
+    "こころがあったかい話",
+  ].freeze
+#---
+
   THUMBNAIL_SIZE = [150,150].freeze
   # バリデーション設定
   # （presence: 書籍名、画像イメージ、作者名のみ）
