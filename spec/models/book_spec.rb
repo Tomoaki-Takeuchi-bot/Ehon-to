@@ -27,36 +27,6 @@ RSpec.describe Book, type: :model do
   let(:book) { create(:book) }
   let(:user) { create(:user) }
 
-  context "search" do
-    let(:book) { create(:book, :book_with_comment) }
-    subject { Book.find_with_comments(book.id) }
-    it "success" do
-      expect(subject.comments.size).to eq(3)
-    end
-  end
-
-  context "search" do
-    let(:search_param) { nil }
-    subject { Book.search(search_param) }
-
-    context 'without search_param' do
-      it "all books" do
-        expect(subject.size).to eq(Book.all.size)
-      end
-    end
-
-    context 'wit search_param' do
-      let(:search_param) { @timestamp }
-      before {
-        timestamp!
-        create(:book, body: "<h1>Title#{@timestamp}</h1>")
-      }
-      it '1 record' do
-        expect(subject.size).to eq(1)
-      end
-    end
-  end
-
   context "has_favorites?" do
     subject { book.has_favorites?(user) }
 
