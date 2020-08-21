@@ -21,6 +21,8 @@ gem 'bootstrap', '~> 4.5'
 gem 'carrierwave', '1.2.2'
 # リサイズ
 gem 'mini_magick'
+# 検索機能
+gem 'ransack', '~> 2.3', '>= 2.3.2'
 # ログイン機能
 gem 'devise', '~> 4.7', '>= 4.7.2'
 # devise日本語化

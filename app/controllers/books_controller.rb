@@ -2,7 +2,8 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   def index
-    books = Book.includes(:user)
+    @q = Book.ransack(params[:q])
+    books = @q.result.includes(:user)
     books = books.where(id: params[:ids]) if params[:ids].present?
     books = books.tagged_with(params[:tag_list], any: true) if params[:tag_list].present?
     @books = books.page(params[:page]).per(5)

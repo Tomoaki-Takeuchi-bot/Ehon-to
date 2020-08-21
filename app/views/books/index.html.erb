@@ -5,12 +5,12 @@
   <%= link_to '本を登録する', new_book_path, class: 'btn btn-primary' %>
 </div>
 
-<%= form_tag books_path, method: :get do %>
+<%= search_form_for @q do |f| %>
   <div class="my-2">
     <%= select_tag :tag_list, options_for_select(Book::TAGS), multiple: true, class: "enable-select2" %>
   </div>
   <div class="my-2">
-    <%= text_field_tag :q, "", placeholder: "キーワード" %>
+    <%= f.search_field :name_cont, placeholder: "キーワード", class: "py-1" %>
   </div>
   <%= submit_tag "Search", class: "btn btn-outline-info btn-sm" %>
 <% end %>
