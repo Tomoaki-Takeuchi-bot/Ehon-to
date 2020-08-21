@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :check_role, only: [:edit, :update, :destroy]
 
   def index
     @q = Book.ransack(params[:q])
@@ -19,25 +20,39 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(book_params.merge(user_id: current_user.id))
-    book.save!
-    redirect_to books_path, notice: "本「#{book.name}」を登録しました。"
+    @book = Book.new(book_params)
+    respond_to do |format|
+      if @book.save
+        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.json { render json: @book, status: :created }
+      else
+        format.html { render :new }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def edit
-    @book = Book.find(params[:id])
   end
 
   def update
-    book = Book.find(params[:id])
-    book.update!(book_params)
-    redirect_to books_url, notice: "「#{book.name}」の内容を更新しました。"
+    respond_to do |format|
+      if @book.update(book_params)
+        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.json { render json: @book, status: :ok }
+      else
+        format.html { render :edit }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
-    book = Book.find(params[:id])
-    book.destroy
-    redirect_to books_url, notice: "本「#{book.name}」を削除しました。"
+    @book.destroy
+    respond_to do |format|
+      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   def favorite
@@ -60,5 +75,13 @@ class BooksController < ApplicationController
       :image_cache,
       tag_list: []
     ).merge({ user_id: current_user.id })
+  end
+
+  def set_book
+    @book = Book.find_with_comments(params[:id])
+  end
+
+  def check_role
+    redirect_to books_url unless @book.user_id == current_user.id
   end
 end
