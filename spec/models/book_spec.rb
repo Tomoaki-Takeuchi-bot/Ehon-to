@@ -27,39 +27,57 @@ RSpec.describe Book, type: :model do
   let(:book) { create(:book) }
   let(:user) { create(:user) }
 
-  it '有効ファクトリーの確認' do
-    expect(book).to be_valid
-  end
-
-  context 'search' do
+  context "search" do
     let(:book) { create(:book, :book_with_comment) }
     subject { Book.find_with_comments(book.id) }
-    it 'success' do
+    it "success" do
       expect(subject.comments.size).to eq(3)
     end
   end
 
-  context 'has_favorites?' do
+  context "search" do
+    let(:search_param) { nil }
+    subject { Book.search(search_param) }
+
+    context 'without search_param' do
+      it "all books" do
+        expect(subject.size).to eq(Book.all.size)
+      end
+    end
+
+    context 'wit search_param' do
+      let(:search_param) { @timestamp }
+      before {
+        timestamp!
+        create(:book, body: "<h1>Title#{@timestamp}</h1>")
+      }
+      it '1 record' do
+        expect(subject.size).to eq(1)
+      end
+    end
+  end
+
+  context "has_favorites?" do
     subject { book.has_favorites?(user) }
 
     context 'has no favorites' do
-      it 'false' do
+      it "false" do
         expect(subject).to eq(false)
       end
     end
 
     context 'has favorites' do
-      before do
+      before {
         book.like(user.id)
-      end
-      it 'true' do
+      }
+      it "true" do
         expect(subject).to eq(true)
       end
     end
   end
 
-  context 'like/unlike' do
-    it 'anable to switch like unlike' do
+  context "like/unlike" do
+    it "anable to switch like unlike" do
       book.like(user.id)
       expect(book.favorites.size).to eq(1)
       expect(book.favorites.first.user_id).to eq(user.id)
