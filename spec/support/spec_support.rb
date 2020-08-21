@@ -20,8 +20,8 @@ module SpecSupport
       sign_in(user)
     when :system
       visit new_user_session_path
-      find("#user_email").set(user.email)
-      find("#user_password").set(user.password)
+      find('#user_email').set(user.email)
+      find('#user_password').set(user.password)
       first("input[value='Log in']").click
     end
   end
@@ -45,6 +45,4 @@ module SpecSupport
   def take_screenshot
     page.save_screenshot(Rails.root.join('tmp', 'screenshots', "debug-#{Time.now.to_i}.png"))
   end
-
-
 end

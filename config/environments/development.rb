@@ -69,7 +69,5 @@ Rails.application.configure do
 
   # --追加項目（Bettar Error）設定ーー
   # https://github.com/BetterErrors/better_errors/issues/270
-  if Rails.env.development?
-    BetterErrors::Middleware.allow_ip! '0.0.0.0/0'
-  end
+  BetterErrors::Middleware.allow_ip! '0.0.0.0/0' if Rails.env.development?
 end

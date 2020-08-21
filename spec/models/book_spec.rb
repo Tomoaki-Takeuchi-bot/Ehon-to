@@ -32,35 +32,35 @@ RSpec.describe Book, type: :model do
     expect(book).to be_valid
   end
 
-  context "search" do
+  context 'search' do
     let(:book) { create(:book, :book_with_comment) }
     subject { Book.find_with_comments(book.id) }
-    it "success" do
+    it 'success' do
       expect(subject.comments.size).to eq(3)
     end
   end
 
-  context "has_favorites?" do
+  context 'has_favorites?' do
     subject { book.has_favorites?(user) }
 
     context 'has no favorites' do
-      it "false" do
+      it 'false' do
         expect(subject).to eq(false)
       end
     end
 
     context 'has favorites' do
-      before {
+      before do
         book.like(user.id)
-      }
-      it "true" do
+      end
+      it 'true' do
         expect(subject).to eq(true)
       end
     end
   end
 
-  context "like/unlike" do
-    it "anable to switch like unlike" do
+  context 'like/unlike' do
+    it 'anable to switch like unlike' do
       book.like(user.id)
       expect(book.favorites.size).to eq(1)
       expect(book.favorites.first.user_id).to eq(user.id)

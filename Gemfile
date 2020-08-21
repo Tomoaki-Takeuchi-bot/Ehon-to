@@ -18,9 +18,11 @@ gem 'webpacker', '~> 4.0'
 # フレームワーク
 gem 'bootstrap', '~> 4.5'
 # 画像投稿用
-gem "carrierwave", "1.2.2"
+gem 'carrierwave', '1.2.2'
 # リサイズ
 gem 'mini_magick'
+# 検索機能
+gem 'ransack', '~> 2.3', '>= 2.3.2'
 # ログイン機能
 gem 'devise', '~> 4.7', '>= 4.7.2'
 # devise日本語化

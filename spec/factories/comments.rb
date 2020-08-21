@@ -24,6 +24,6 @@ FactoryBot.define do
   factory :comment do
     association :user
     association :book
-    comment { "テスト投稿です。" }
+    comment { 'テスト投稿です。' }
   end
 end
