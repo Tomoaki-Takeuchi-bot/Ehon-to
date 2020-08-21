@@ -58,15 +58,15 @@ class User < ApplicationRecord
   #---
 
   def follow(other_user_id)
-    self.relationships.find_or_create_by(follow_id: other_user_id) unless self.id == other_user_id.to_i
+    relationships.find_or_create_by(follow_id: other_user_id) unless id == other_user_id.to_i
   end
 
   def unfollow(other_user_id)
-    relationship = self.relationships.find_by(follow_id: other_user_id)
-    relationship.destroy if relationship
+    relationship = relationships.find_by(follow_id: other_user_id)
+    relationship&.destroy
   end
 
   def following?(other_user)
-    self.followings.include?(other_user)
+    followings.include?(other_user)
   end
 end

@@ -42,7 +42,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 登録可能ホワイトリスト（拡張子）
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # Override the filename of the uploaded files:
@@ -54,7 +54,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # モデル毎にサムネイル値を変える設定。デフォルト(40,40)
   # モデルにて定数THUMBNAIL_SIZEの定義で採用。
   def dynamic_resize_fit
-    width, height = model.class::const_defined?("THUMBNAIL_SIZE") ? model.class::THUMBNAIL_SIZE : [40, 40]
+    width, height = model.class.const_defined?('THUMBNAIL_SIZE') ? model.class::THUMBNAIL_SIZE : [40, 40]
     resize_to_fit width, height
   end
 end

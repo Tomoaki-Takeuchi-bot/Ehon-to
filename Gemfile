@@ -18,7 +18,7 @@ gem 'webpacker', '~> 4.0'
 # フレームワーク
 gem 'bootstrap', '~> 4.5'
 # 画像投稿用
-gem "carrierwave", "1.2.2"
+gem 'carrierwave', '1.2.2'
 # リサイズ
 gem 'mini_magick'
 # ログイン機能

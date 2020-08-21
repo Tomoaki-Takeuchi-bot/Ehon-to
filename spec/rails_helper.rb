@@ -3,7 +3,7 @@ require 'spec_helper'
 ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -35,7 +35,7 @@ end
 
 RSpec.configure do |config|
   # -- 追加事項  --
-  #create,build を使えるようにする
+  # create,build を使えるようにする
   config.include FactoryBot::Syntax::Methods
   # テストで使う共通関数をまとめたModule
   config.include SpecSupport
@@ -86,8 +86,8 @@ RSpec.configure do |config|
     Capybara.register_driver :selenium_chrome do |app|
       opts = {
         desired_capabilities: :chrome,
-        browser:              :remote,
-        url:                  ENV["SELENIUM_REMOTE_URL"],
+        browser: :remote,
+        url: ENV['SELENIUM_REMOTE_URL']
       }
       Capybara::Selenium::Driver.new(app, opts)
     end
@@ -101,7 +101,7 @@ RSpec.configure do |config|
   # coverageテスト結果出力が必要な際は env COVERAGE=true を渡してください。
   # 下記はコマンド例
   # example: docker-compose run --rm -e COVERAGE=true web bundle exec rspec
-  if ENV["COVERAGE"]
+  if ENV['COVERAGE']
     require 'simplecov'
 
     # カバレッジが90以下は失敗

@@ -50,26 +50,26 @@ RSpec.describe User, type: :model do
   let(:user) { create(:user) }
   let(:other_user) { create(:user) }
 
-  context "フォロー状態の確認" do
+  context 'フォロー状態の確認' do
     subject { user.following?(other_user) }
     context 'フォローしている時' do
-      before {
+      before do
         user.follow(other_user.id)
-      }
-      it "trueを返す" do
+      end
+      it 'trueを返す' do
         expect(subject).to eq(true)
       end
     end
 
     context 'フォローしていない時' do
-      it "falseを返す" do
+      it 'falseを返す' do
         expect(subject).to eq(false)
       end
     end
   end
 
-  context "フォロー・フォロー解除動作" do
-    it "フォローした後にフォロー解除可能" do
+  context 'フォロー・フォロー解除動作' do
+    it 'フォローした後にフォロー解除可能' do
       user.follow(other_user.id)
       expect(user.followings.size).to eq(1)
       expect(user.followings.first.id).to eq(other_user.id)
@@ -78,7 +78,7 @@ RSpec.describe User, type: :model do
       expect(user.followings.size).to eq(0)
     end
 
-    it "自分自身のフォロー不可" do
+    it '自分自身のフォロー不可' do
       user.follow(user.id)
       expect(user.followings.size).to eq(0)
     end
