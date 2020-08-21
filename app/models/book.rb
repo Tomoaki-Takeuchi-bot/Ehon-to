@@ -46,7 +46,7 @@ class Book < ApplicationRecord
   # （presence: 書籍名、画像イメージ、作者名のみ）
   validates :name, presence: true, length: { maximum: 200 }
   validates :author_name, presence: true
-  validates :image, presende: true
+  validates :image, presence: true
 
   scope :find_with_comments, lambda { |id|
     includes(:favorites, comments: :user).find(id)
