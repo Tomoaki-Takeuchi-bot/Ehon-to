@@ -121,7 +121,7 @@ RSpec.describe "Books", type: :request do
             book: attributes_for(
               :book,
               name: "Create book#{timestamp}",
-              tag_list: ["ゆかいな話", "ふしぎな話"]
+              tag_list: ["ゆかいな話", "ふしぎな話"],
             )
           }
         }.to change { Book.count }.by(1)
@@ -140,7 +140,7 @@ RSpec.describe "Books", type: :request do
           post books_path, params: { book: attributes_for(:book, name: "") }
         }.to change { Book.count }.by(0)
         expect(response.status).to eq(200)
-        expect(response.body).to include(CGI.escapeHTML("Name can't be blank"))
+        expect(response.body).to include(CGI.escapeHTML("Nameを入力してください"))
       end
     end
 
@@ -152,12 +152,12 @@ RSpec.describe "Books", type: :request do
               book: attributes_for(
                 :book,
                 name: "Create book#{timestamp}",
-                tag_list: ["ゆかいな話", "ふしぎな話"]
+                tag_list: ["ゆかいな話", "ふしぎな話"],
               )
             }
           }.to change { Book.count }.by(1)
           expect(response.status).to eq(201)
-          expect(json_response["name"]).to eq("Create Book#{timestamp}")
+          expect(json_response["name"]).to eq("Create book#{timestamp}")
           expect(json_response["user_id"]).to eq(current_user.id)
           expect(json_response["tag_list"]).to include("ゆかいな話", "ふしぎな話")
         end
@@ -192,7 +192,7 @@ RSpec.describe "Books", type: :request do
       it "render to edit page" do
         put book_path(book), params: { book: { name: ""} }
         expect(response.status).to eq(200)
-        expect(response.body).to include(CGI.escapeHTML("Name can't be blank"))
+        expect(response.body).to include(CGI.escapeHTML("Nameを入力してください"))
       end
     end
 
