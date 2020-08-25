@@ -122,14 +122,15 @@ RSpec.describe "Books", type: :request do
               :book,
               name: "Create book#{timestamp}",
               tag_list: ["ゆかいな話", "ふしぎな話"],
+              image: Rack::Test::UploadedFile.new(File.join(Rails.root, "/spec/factories/images/test.png"))
             )
           }
         }.to change { Book.count }.by(1)
-        book = Book.find_by(name: "Create Book#{timestamp}")
+        book = Book.find_by(name: "Create book#{timestamp}")
         expect(response).to redirect_to(book_path(book))
         follow_redirect!
         expect(response.body).to include("Book was successfully created.")
-        expect(response.body).to include("Create Book#{timestamp}")
+        expect(response.body).to include("Create book#{timestamp}")
         expect(response.body).to include("ゆかいな話", "ふしぎな話")
       end
     end
@@ -153,6 +154,7 @@ RSpec.describe "Books", type: :request do
                 :book,
                 name: "Create book#{timestamp}",
                 tag_list: ["ゆかいな話", "ふしぎな話"],
+                image: Rack::Test::UploadedFile.new(File.join(Rails.root, "/spec/factories/images/test.png"))
               )
             }
           }.to change { Book.count }.by(1)
