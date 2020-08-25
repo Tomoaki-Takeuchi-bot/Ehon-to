@@ -2,17 +2,16 @@
 #
 # Table name: books
 #
-#  id           :bigint           not null, primary key
-#  author_image :string
-#  author_name  :string           not null
-#  image        :string
-#  isbn         :string
-#  name         :string           not null
-#  price        :integer
-#  publisher    :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :bigint
+#  id          :bigint           not null, primary key
+#  author_name :string           not null
+#  image       :string
+#  isbn        :string
+#  name        :string           not null
+#  price       :integer
+#  publisher   :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint
 #
 # Indexes
 #
@@ -28,39 +27,27 @@ RSpec.describe Book, type: :model do
   let(:book) { create(:book) }
   let(:user) { create(:user) }
 
-  it '有効ファクトリーの確認' do
-    expect(book).to be_valid
-  end
-
-  context 'search' do
-    let(:book) { create(:book, :book_with_comment) }
-    subject { Book.find_with_comments(book.id) }
-    it 'success' do
-      expect(subject.comments.size).to eq(3)
-    end
-  end
-
-  context 'has_favorites?' do
+  context "has_favorites?" do
     subject { book.has_favorites?(user) }
 
     context 'has no favorites' do
-      it 'false' do
+      it "false" do
         expect(subject).to eq(false)
       end
     end
 
     context 'has favorites' do
-      before do
+      before {
         book.like(user.id)
-      end
-      it 'true' do
+      }
+      it "true" do
         expect(subject).to eq(true)
       end
     end
   end
 
-  context 'like/unlike' do
-    it 'anable to switch like unlike' do
+  context "like/unlike" do
+    it "anable to switch like unlike" do
       book.like(user.id)
       expect(book.favorites.size).to eq(1)
       expect(book.favorites.first.user_id).to eq(user.id)

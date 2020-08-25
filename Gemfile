@@ -99,5 +99,5 @@ group :test do
   gem 'factory_bot_rails', '~> 4.10.0'
   gem 'rspec-rails', '~>4.0.0'
   # Code coverageツール
-  gem 'simplecov', '~> 0.8.1', require: false
+  gem 'simplecov', '~> 0.19.0', require: false
 end

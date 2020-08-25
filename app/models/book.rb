@@ -2,17 +2,16 @@
 #
 # Table name: books
 #
-#  id           :bigint           not null, primary key
-#  author_image :string
-#  author_name  :string           not null
-#  image        :string
-#  isbn         :string
-#  name         :string           not null
-#  price        :integer
-#  publisher    :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  user_id      :bigint
+#  id          :bigint           not null, primary key
+#  author_name :string           not null
+#  image       :string
+#  isbn        :string
+#  name        :string           not null
+#  price       :integer
+#  publisher   :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint
 #
 # Indexes
 #
@@ -47,6 +46,7 @@ class Book < ApplicationRecord
   # （presence: 書籍名、画像イメージ、作者名のみ）
   validates :name, presence: true, length: { maximum: 200 }
   validates :author_name, presence: true
+  validates :image, presence: true
 
   scope :find_with_comments, lambda { |id|
     includes(:favorites, comments: :user).find(id)
@@ -64,7 +64,5 @@ class Book < ApplicationRecord
     favorite_id = favorites.find_by(user_id: favorite_user_id).id
     favorites.destroy(favorite_id)
   end
-  # <TODO>
-  # 画像イメージ機能実装後に設定
-  # validates :image, presende: true
+
 end
