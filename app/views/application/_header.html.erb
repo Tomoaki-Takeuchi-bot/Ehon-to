@@ -1,0 +1,44 @@
+
+    <% if notice %>
+    <div class="alert alert-info">
+      <%= notice %>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    <% elsif alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    <% end %>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Ehon-to</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to("私のページ", edit_user_registration_path(current_user), class: "nav-link") %>
+          </li>
+          <li class="nav-item">
+            <%= link_to("ログアウト", destroy_user_session_path, method: :delete, class: "nav-link") %>
+          </li>
+          <li class="nav-item">
+            <%= link_to("本の一覧", books_path, class: "nav-link") %>
+          </li>
+          <li class="nav-item">
+            <%= link_to("ユーザー：一覧", users_path, class: "nav-link") %>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <%= link_to("新しく登録", new_user_registration_path, class: "nav-link") %>
+          </li>
+          <li class="nav-item">
+            <%= link_to("ログイン", new_user_session_path, class: "nav-link") %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
