@@ -22,7 +22,7 @@ module SpecSupport
       visit new_user_session_path
       find('#user_email').set(user.email)
       find('#user_password').set(user.password)
-      first("input[value='Log in']").click
+      first("input[value='ログイン']").click
     end
   end
 
