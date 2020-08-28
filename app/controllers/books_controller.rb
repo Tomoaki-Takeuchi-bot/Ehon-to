@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :check_role, only: [:edit, :update, :destroy]
+  before_action :set_book, only: %i[show edit update destroy]
+  before_action :check_role, only: %i[edit update destroy]
 
   def index
     @q = Book.ransack(params[:q])
@@ -32,8 +32,7 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|

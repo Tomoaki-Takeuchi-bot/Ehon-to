@@ -30,7 +30,6 @@ class User < ApplicationRecord
   attr_accessor :current_password
 
   mount_uploader :image, ImageUploader
-
   validates :name, presence: true, length: { maximum: 30 }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
