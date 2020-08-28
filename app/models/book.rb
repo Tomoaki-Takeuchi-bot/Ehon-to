@@ -64,5 +64,4 @@ class Book < ApplicationRecord
     favorite_id = favorites.find_by(user_id: favorite_user_id).id
     favorites.destroy(favorite_id)
   end
-
 end

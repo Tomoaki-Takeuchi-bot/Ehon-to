@@ -1,20 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe "Books", type: :request do
-  before {
+RSpec.describe 'Books', type: :request do
+  before do
     timestamp!
     log_in
-  }
+  end
 
-  describe "GET /books" do
-    before {
-      (1..2).each {|index|
+  describe 'GET /books' do
+    before do
+      (1..2).each do |index|
         create(:book, name: "Name#{index}#{timestamp}")
-      }
-    }
+      end
+    end
 
     context 'when not loged in' do
-      it "redirect to sign in" do
+      it 'redirect to sign in' do
         log_out
         get books_path
         expect(response).to redirect_to(new_user_session_path)
@@ -22,7 +22,7 @@ RSpec.describe "Books", type: :request do
     end
 
     context 'when loged in' do
-      it "render to index page" do
+      it 'render to index page' do
         get books_path
         expect(response.status).to eq(200)
         expect(response.body).to include("Name1#{timestamp}")
@@ -30,7 +30,7 @@ RSpec.describe "Books", type: :request do
       end
     end
 
-    context "when include ids params" do
+    context 'when include ids params' do
       it 'render to index page specified ids' do
         book = Book.find_by(name: "Name2#{timestamp}")
         get books_path(ids: book.id)
@@ -40,12 +40,12 @@ RSpec.describe "Books", type: :request do
       end
     end
 
-    context "when include tag_list" do
-      before {
-        create(:book, name: "Name with tag#{timestamp}", tag_list: "travel")
-      }
+    context 'when include tag_list' do
+      before do
+        create(:book, name: "Name with tag#{timestamp}", tag_list: 'travel')
+      end
       it 'render to index page specified tags' do
-        get books_path(tag_list: ["travel"])
+        get books_path(tag_list: ['travel'])
         expect(response.status).to eq(200)
         expect(response.body).not_to include("Name1#{timestamp}")
         expect(response.body).not_to include("Name2#{timestamp}")
@@ -53,10 +53,10 @@ RSpec.describe "Books", type: :request do
       end
     end
 
-    context "when include name" do
-      before {
+    context 'when include name' do
+      before do
         create(:book, name: "Name3#{timestamp}")
-      }
+      end
       it 'render to index page specified tags' do
         get books_path(q: { name_cont: "Name3#{timestamp}" })
         expect(response.status).to eq(200)
@@ -67,9 +67,9 @@ RSpec.describe "Books", type: :request do
     end
   end
 
-  describe "GET /books/:id" do
+  describe 'GET /books/:id' do
     context 'other users book page' do
-      it "render to show page" do
+      it 'render to show page' do
         book = create(:book, name: "Show Page#{timestamp}")
         get book_path(book)
         expect(response.status).to eq(200)
@@ -78,7 +78,7 @@ RSpec.describe "Books", type: :request do
     end
 
     context 'own book page' do
-      it "render to show page" do
+      it 'render to show page' do
         book = create(:book, user: current_user, name: "Show Page#{timestamp}")
         get book_path(book)
         expect(response.status).to eq(200)
@@ -87,16 +87,16 @@ RSpec.describe "Books", type: :request do
     end
   end
 
-  describe "GET /books/new" do
-    it "render to new page" do
+  describe 'GET /books/new' do
+    it 'render to new page' do
       get new_book_path
       expect(response.status).to eq(200)
     end
   end
 
-  describe "GET /books/:id/edit" do
+  describe 'GET /books/:id/edit' do
     context 'other users book page' do
-      it "redirect to index page" do
+      it 'redirect to index page' do
         book = create(:book, name: "Edit Page#{timestamp}")
         get edit_book_path(book)
         expect(response).to redirect_to(books_path)
@@ -104,7 +104,7 @@ RSpec.describe "Books", type: :request do
     end
 
     context 'own book page' do
-      it "render to edit page" do
+      it 'render to edit page' do
         book = create(:book, user: current_user, name: "Edit Page#{timestamp}")
         get edit_book_path(book)
         expect(response.status).to eq(200)
@@ -113,115 +113,115 @@ RSpec.describe "Books", type: :request do
     end
   end
 
-  describe "POST /books" do
+  describe 'POST /books' do
     context 'valid params' do
-      it "redirect to show page" do
-        expect {
+      it 'redirect to show page' do
+        expect do
           post books_path, params: {
             book: attributes_for(
               :book,
               name: "Create book#{timestamp}",
-              tag_list: ["ゆかいな話", "ふしぎな話"],
-              image: Rack::Test::UploadedFile.new(File.join(Rails.root, "/spec/factories/images/test.png"))
+              tag_list: %w[ゆかいな話 ふしぎな話],
+              image: Rack::Test::UploadedFile.new(File.join(Rails.root, '/spec/factories/images/test.png'))
             )
           }
-        }.to change { Book.count }.by(1)
+        end.to change { Book.count }.by(1)
         book = Book.find_by(name: "Create book#{timestamp}")
         expect(response).to redirect_to(book_path(book))
         follow_redirect!
-        expect(response.body).to include("Book was successfully created.")
+        expect(response.body).to include('Book was successfully created.')
         expect(response.body).to include("Create book#{timestamp}")
-        expect(response.body).to include("ゆかいな話", "ふしぎな話")
+        expect(response.body).to include('ゆかいな話', 'ふしぎな話')
       end
     end
 
     context 'invalid params' do
-      it "render to new page" do
-        expect {
-          post books_path, params: { book: attributes_for(:book, name: "") }
-        }.to change { Book.count }.by(0)
+      it 'render to new page' do
+        expect do
+          post books_path, params: { book: attributes_for(:book, name: '') }
+        end.to change { Book.count }.by(0)
         expect(response.status).to eq(200)
-        expect(response.body).to include(CGI.escapeHTML("Nameを入力してください"))
+        expect(response.body).to include(CGI.escapeHTML('Nameを入力してください'))
       end
     end
 
-    context "request format is json" do
+    context 'request format is json' do
       context 'valid params' do
-        it "return updated attributes" do
-          expect {
+        it 'return updated attributes' do
+          expect do
             post books_path(format: :json), params: {
               book: attributes_for(
                 :book,
                 name: "Create book#{timestamp}",
-                tag_list: ["ゆかいな話", "ふしぎな話"],
-                image: Rack::Test::UploadedFile.new(File.join(Rails.root, "/spec/factories/images/test.png"))
+                tag_list: %w[ゆかいな話 ふしぎな話],
+                image: Rack::Test::UploadedFile.new(File.join(Rails.root, '/spec/factories/images/test.png'))
               )
             }
-          }.to change { Book.count }.by(1)
+          end.to change { Book.count }.by(1)
           expect(response.status).to eq(201)
-          expect(json_response["name"]).to eq("Create book#{timestamp}")
-          expect(json_response["user_id"]).to eq(current_user.id)
-          expect(json_response["tag_list"]).to include("ゆかいな話", "ふしぎな話")
+          expect(json_response['name']).to eq("Create book#{timestamp}")
+          expect(json_response['user_id']).to eq(current_user.id)
+          expect(json_response['tag_list']).to include('ゆかいな話', 'ふしぎな話')
         end
       end
 
       context 'invalid params' do
-        it "return error messages" do
-          expect {
-            post books_path(format: :json), params: { book: attributes_for(:book, name: "") }
-          }.to change { Book.count }.by(0)
+        it 'return error messages' do
+          expect do
+            post books_path(format: :json), params: { book: attributes_for(:book, name: '') }
+          end.to change { Book.count }.by(0)
           expect(response.status).to eq(422)
-          expect(json_response["name"]).to include("を入力してください")
+          expect(json_response['name']).to include('を入力してください')
         end
       end
     end
   end
 
-  describe "PUT /books/:id" do
-    let(:book) { create(:book, user: current_user, tag_list: ["ゆかいな話"]) }
+  describe 'PUT /books/:id' do
+    let(:book) { create(:book, user: current_user, tag_list: ['ゆかいな話']) }
     context 'valid params' do
-      it "redirect to show page" do
-        put book_path(book), params: { book: { name: "Updated #{timestamp}", tag_list: ["ふしぎな話"]} }
+      it 'redirect to show page' do
+        put book_path(book), params: { book: { name: "Updated #{timestamp}", tag_list: ['ふしぎな話'] } }
         expect(response).to redirect_to(book_path(book))
         follow_redirect!
-        expect(response.body).to include("Book was successfully updated.")
+        expect(response.body).to include('Book was successfully updated.')
         expect(response.body).to include("Updated #{timestamp}")
-        expect(response.body).to include("ふしぎな話")
+        expect(response.body).to include('ふしぎな話')
       end
     end
 
     context 'invalid params' do
-      it "render to edit page" do
-        put book_path(book), params: { book: { name: ""} }
+      it 'render to edit page' do
+        put book_path(book), params: { book: { name: '' } }
         expect(response.status).to eq(200)
-        expect(response.body).to include(CGI.escapeHTML("Nameを入力してください"))
+        expect(response.body).to include(CGI.escapeHTML('Nameを入力してください'))
       end
     end
 
     context 'try to update other users book' do
-      it "redirect to index page" do
+      it 'redirect to index page' do
         other_book = create(:book)
-        put book_path(other_book), params: { book: { name: "Name"} }
+        put book_path(other_book), params: { book: { name: 'Name' } }
         expect(response).to redirect_to(books_path)
       end
     end
 
-    context "request format is json" do
+    context 'request format is json' do
       context 'valid params' do
-        it "return updated attributes" do
-          put book_path(book, format: :json), params: { book: { name: "Updated #{timestamp}", tag_list: ["ふしぎな話"]} }
+        it 'return updated attributes' do
+          put book_path(book, format: :json), params: { book: { name: "Updated #{timestamp}", tag_list: ['ふしぎな話'] } }
           expect(response.status).to eq(200)
-          expect(json_response["name"]).to eq("Updated #{timestamp}")
-          expect(json_response["user_id"]).to eq(current_user.id)
-          expect(json_response["tag_list"]).to include("ふしぎな話")
+          expect(json_response['name']).to eq("Updated #{timestamp}")
+          expect(json_response['user_id']).to eq(current_user.id)
+          expect(json_response['tag_list']).to include('ふしぎな話')
         end
       end
 
       context 'invalid params' do
-        it "return error messages" do
-          put book_path(book, format: :json), params: { book: { name: ""} }
+        it 'return error messages' do
+          put book_path(book, format: :json), params: { book: { name: '' } }
           expect(response.status).to eq(422)
-          expect(json_response["name"]).to include("を入力してください")
+          expect(json_response['name']).to include('を入力してください')
         end
       end
     end
@@ -230,28 +230,28 @@ RSpec.describe "Books", type: :request do
   describe 'DELETE /books/:id' do
     let(:book) { create(:book, user: current_user) }
     context 'delete own book' do
-      it "redirect to index page" do
+      it 'redirect to index page' do
         delete book_path(book)
         expect(response).to redirect_to(books_path)
         follow_redirect!
-        expect(response.body).to include("Book was successfully destroyed")
+        expect(response.body).to include('Book was successfully destroyed')
       end
     end
 
     context 'format is json' do
-      it "status 204" do
+      it 'status 204' do
         delete book_path(book, format: :json)
         expect(response.status).to eq(204)
       end
     end
 
     context 'try to delete other users book' do
-      it "redirect to index page without notice" do
+      it 'redirect to index page without notice' do
         other_book = create(:book)
         delete book_path(other_book)
         expect(response).to redirect_to(books_path)
         follow_redirect!
-        expect(response.body).not_to include("Book was successfully destroyed")
+        expect(response.body).not_to include('Book was successfully destroyed')
       end
     end
   end
