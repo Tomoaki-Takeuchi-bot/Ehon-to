@@ -1,12 +1,55 @@
-<h1>こんにちは</h1>
-<h2>仮設トップページです。</h2>
+<div class="py-4 bg-light">
+  <section id="about">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-md-8 mb-3">
+          <h3 class="mb-3">Ehon-toについて</h3>
+          <h5>小さなお子様の読書習慣における、読んだ本の履歴を管理できるアプリです。<br>
+            読んだ本を忘れないように、また子供がどんな感想をもったのか記録できます。<br>
+            他のユーザーの方が読んだ本、カテゴリ毎の絵本の検索もできます。<br>
+            このアプリを絵本を通じた子供の成長を応援します。</h5>
+          <% if user_signed_in? %>
+          <%= link_to "本の一覧", books_path, class: "btn btn-primary" %></h3>
+          <% else %>
+          <%= link_to "未登録の方（新規登録）", new_user_registration_path, class: "btn btn-info mt-3" %></h4>
+          <%= link_to "登録済みの方（ログイン）", new_user_session_path, class: "btn btn-primary mt-3" %></h4>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <%= image_pack_tag "top1.jpg", size: "300x300" %>
+        </div>
+      </div>
 
-<% if user_signed_in? %>
-<h3><%= link_to("本の一覧", books_path) %></h3>
-<% else %>
-<h3>登録をお願いします。</h3>
-<h4><%= link_to("新しいユーザー", new_user_registration_path) %></h4>
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <!-- card1-->
+          <div class="card mb-3">
+            <%= image_pack_tag "top2.png", size:"330x300"%>
+            <div class="card-body d-flex justify-content-between">
+              <h5>読んだ絵本の管理</h5>
+            </div>
+          </div>
+        </div>
 
-<h3>登録はお済みでしたら下記からログインしてください。</h3>
-<h4><%= link_to("ログイン", new_user_session_path) %></h4>
-<% end %>
+        <!--card2-->
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <%= image_pack_tag "top3.png", size:"330x300" %>
+            <div class="card-body d-flex justify-content-between">
+              <h5>読みたい絵本を見つける</h5>
+            </div>
+          </div>
+        </div>
+
+        <!--card2-->
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <%= image_pack_tag "top4.jpg", size:"330x300" %>
+            <div class="card-body d-flex justify-content-between">
+              <h5>みんなで読んだ絵本を共有</h5>
+            </div>
+          </div>
+        </div>
+
+  </section>
+</div>
