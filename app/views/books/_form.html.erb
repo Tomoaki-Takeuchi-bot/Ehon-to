@@ -1,51 +1,55 @@
 <%= render 'share/errors', model: book %>
 
-<div class="container post_form ">
 
-  <%= form_with model: book, local: true do |f| %>
+<%= form_with model: book, local: true do |f| %>
 
-    <div class='form-group row'>
-      <div class='col-md-8'>
-        <%= f.label :name, "本の名前" %>
-        <%= f.text_field :name, class: 'form-control', id: 'book_name' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :tag_list %><br />
-        <%= f.select :tag_list, options_for_select(Book::TAGS, book.tag_list), {}, multiple: true, class: "enable-select2" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :image %><br />
-        <%= f.file_field :image %><br />
-        <% if book.image? %>
-          <%= image_tag book.image.thumb.url, id: 'image_present' %>
-        <% else %>
-          <%= image_pack_tag 'no_image.png', id: 'image_present' %>
-          <%= f.hidden_field :image_cache %>
-        <% end %>
-        <img class="d-none" id="image_prev" src="#" width="150" height="150">
-      </div>
-
-      <div>
-        <%= f.label :publisher, '出版社' %>
-        <%= f.text_field :publisher, class:'form-control', id: 'book_publisher' %>
-      </div>
-      <div>
-        <%= f.label :author_name, '作者' %>
-        <%= f.text_field :author_name, class:'form-control', id: 'book_author_name' %>
-      </div>
-      <div>
-        <%= f.label :price, '書籍価格' %>
-        <%= f.number_field :price, class:'form-control', id: 'book_price' %>
-      </div>
-      <div>
-        <%= f.label :isbn, '書籍分類コード' %>
-        <%= f.number_field :isbn, class:'form-control', id: 'book_isbn' %>
-      </div>
-      <div class="d-flex justify-content-center col-lg-4 col-md-6 mx-auto mb-3">
-          <%= f.submit nil, class: 'btn btn-primary form-control' %>
-      </div>
+<div class="container">
+  *印は入力が必須な個所です。<br>
+  <div class="row">
+    <div class='col-sm-6 mt-3'>
+      <%= f.label :name, "本の名前*" %>
+      <%= f.text_field :name, class: 'form-control', id: 'book_name' %>
     </div>
-  <% end %>
+
+    <div class="col-sm-6 mt-3">
+      <%= f.label :tag_list, "タグ" %><br />
+      <%= f.select :tag_list, options_for_select(Book::TAGS, book.tag_list), {}, multiple: true, class: "enable-select2" %>
+    </div>
+
+    <div class="col-sm-6 mt-3">
+      <%= f.label :image, "イメージ*" %><br />
+      <%= f.file_field :image %><br />
+      <% if book.image? %>
+      <%= image_tag book.image.thumb.url, id: 'image_present', class:"img-fluid" %>
+      <% else %>
+      <%= image_pack_tag 'no_image.png', id: 'image_present', class:"img-fluid" %>
+      <%= f.hidden_field :image_cache %>
+      <% end %>
+      <img class="d-none" id="image_prev" src="#" width="150" height="150">
+    </div>
+
+    <div class="col-sm-6 mt-3">
+      <%= f.label :author_name, '作者*' %>
+      <%= f.text_field :author_name, class:'form-control', id: 'book_author_name' %>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="col">
+    <%= f.label :publisher, '出版社' %>
+    <%= f.text_field :publisher, class:'form-control', id: 'book_publisher' %>
+  </div>
+  <div class="col">
+    <%= f.label :price, '書籍価格' %>
+    <%= f.number_field :price, class:'form-control', id: 'book_price' %>
+  </div>
+  <div class="col">
+    <%= f.label :isbn, '書籍分類コード' %>
+    <%= f.number_field :isbn, class:'form-control', id: 'book_isbn' %>
+  </div>
+  <div class="d-flex justify-content-center col-lg-4 col-md-6 mx-auto mt-3">
+    <%= f.submit nil, class: 'btn btn-primary form-control' %>
+  </div>
 </div>
+<% end %>
