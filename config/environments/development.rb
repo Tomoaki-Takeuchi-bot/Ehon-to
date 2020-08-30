@@ -36,7 +36,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   if Rails.application.credentials.gmail.present?
-    mail_address = Rails.application.credentials.gmail[:address]
+    mail_address = Rails.application.credentials.gmail[:mail_address]
     password = Rails.application.credentials.gmail[:password]
   else
     mail_address = 'admin@example.com'
