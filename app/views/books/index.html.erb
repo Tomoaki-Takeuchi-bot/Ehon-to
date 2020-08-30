@@ -1,43 +1,71 @@
 <% provide :title, 'すべての本' %>
 
-<div class="container-fluid pt-3">
-  <h1>すべての本</h1>
-  <%= link_to '本を登録する', new_book_path, class: 'btn btn-primary' %>
+<div class="container pt-3">
+  <div class="row justify-content-center">
+    <h1>すべての本</h1>
+  </div>
 </div>
 
-<%= search_form_for @q do |f| %>
-  <div class="my-2">
-    <%= select_tag :tag_list, options_for_select(Book::TAGS), multiple: true, class: "enable-select2" %>
+<!--新規登録-->
+<div class="container my-3">
+  <div class="row justify-content-center">
+    <%= link_to '本を新規登録する', new_book_path, class: 'btn btn-primary' %>
   </div>
-  <div class="my-2">
-    <%= f.search_field :name_cont, placeholder: "キーワード", class: "py-1" %>
+</div>
+
+<!-- 本の検索（アコーディオン反映）-->
+<div class="container mb-3">
+  <div class="row justify-content-center">
+    <div class="col-sm-12">
+      <div class="accordion" id="accordion-base">
+        <div class="card text-center">
+          <div class="card-header" id="books-search">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card-base" aria-expanded="true" aria-controls="card-base">
+              <h3>本の検索</h3>
+              <h5>＊ここからカテゴリとキーワード検索できます＊</h5>
+            </button>
+          </div>
+          <div id="card-base" class="collapse" aria-labelledby="books-search" data-parent="#accordion-base">
+            <%= search_form_for @q do |f| %>
+            <div class="my-2">
+              <%= select_tag :tag_list, options_for_select(Book::TAGS), multiple: true, class: "enable-select2" %>
+            </div>
+            <div class="my-2">
+              <%= f.search_field :name_cont, placeholder: "キーワード", class: "py-1" %>
+            </div>
+            <%= submit_tag "Search", class: "btn btn-outline-info btn-sm" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <%= submit_tag "Search", class: "btn btn-outline-info btn-sm" %>
-<% end %>
+</div>
+
 
 <div class="mb-3">
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>"本のイメージ”</th>
-      <th>"本の名前"</th>
-      <th>”作成日時”</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= paginate @books %>
-    <% @books.each do |book| %>
-    <tr>
-      <td><%= img_tag(book) %></td>
-      <td><%= link_to book.name, book %></td>
-      <td><%= book.created_at %></td>
-      <td>
-      <%= link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3' %>
-      <%= link_to '削除', book, method: :delete, data: { confirm: "本「#{book.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %>
-      </td>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>"本のイメージ”</th>
+        <th>"本の名前"</th>
+        <th>”作成日時”</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= paginate @books %>
+      <% @books.each do |book| %>
+      <tr>
+        <td><%= img_tag(book) %></td>
+        <td><%= link_to book.name, book %></td>
+        <td><%= book.created_at %></td>
+        <td>
+          <%= link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3' %>
+          <%= link_to '削除', book, method: :delete, data: { confirm: "本「#{book.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
   <%= paginate @books %>
