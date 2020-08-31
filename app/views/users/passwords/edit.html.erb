@@ -1,25 +1,38 @@
-<h2>Change your password</h2>
+<div class="container-login">
+  <h1>パスワードの再設定</h1>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <!-- TODO  flashでの表示設定-->
+  <%= render "shared/flash_messages" %>
   <%= render "users/shared/error_messages", resource: resource %>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
+  <div class="form-group mt-5">
+    <%= f.label :password, "新しいパスワード" %>
     <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字以上)</em><br />
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+    <%= f.password_field :password,
+                          autofocus: true,
+                          autocomplete: "new-password",
+                          class: 'form-control',
+                          required: true,
+                          maxlength: '30' %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation,
+                          autocomplete: "new-password",
+                          autocomplete: true,
+                          class: 'form-control',
+                          required: true,
+                          maxlength: '30' %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
+  <div class="form-group">
+    <%= f.submit "パスワード変更", class: "btn btn-primary" %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+  <% end %>
+</div>
