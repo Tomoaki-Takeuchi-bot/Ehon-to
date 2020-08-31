@@ -1,11 +1,8 @@
-class ImageUploader < CarrierWave::Uploader::Base
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+class ImageUploader < CarrierWave::Uploader::Base # include CarrierWave::RMagick # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
-  # storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -24,11 +21,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
 
   # 全画像リサイズ登録。アスペクト比継承
-  process resize_to_fit: [600, 600]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
+  process resize_to_fit: [600, 600] # end
 
   # Create different versions of your uploaded files:
 
@@ -54,11 +47,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   # モデル毎にサムネイル値を変える設定。デフォルト(40,40)
   # モデルにて定数THUMBNAIL_SIZEの定義で採用。
   def dynamic_resize_fit
-    width, height = if model.class.const_defined?('THUMBNAIL_SIZE')
-                      model.class::THUMBNAIL_SIZE
-                    else
-                      [40, 40]
-end
+    width, height =
+      if model.class.const_defined?('THUMBNAIL_SIZE')
+        model.class::THUMBNAIL_SIZE
+      else
+        [40, 40]
+      end
     resize_to_fit width, height
   end
 end
