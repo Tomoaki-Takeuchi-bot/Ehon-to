@@ -26,3 +26,9 @@ a.heart {
 .alert-alert {
   @extend .alert-danger;
 }
+
+.card-img-top {
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
+}

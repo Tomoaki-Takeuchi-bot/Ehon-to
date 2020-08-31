@@ -42,30 +42,30 @@
   </div>
 </div>
 
-
-<div class="mb-3">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>"本のイメージ”</th>
-        <th>"本の名前"</th>
-        <th>”作成日時”</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= paginate @books %>
-      <% @books.each do |book| %>
-      <tr>
-        <td><%= img_tag(book) %></td>
-        <td><%= link_to book.name, book %></td>
-        <td><%= book.created_at %></td>
-        <td>
+<!--本カード-->
+<%= paginate @books %>
+<div class="container">
+  <div class="row justify-content-center">
+    <% @books.each do |book| %>
+    <div class="col-sm-4 mb-2">
+      <div class="card">
+        <div class="card-img-top img-fluid text-center">
+          <%= img_tag(book)%>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to book.name, book %></h5>
+          <ul style="list-style: none;">
+            <li>作成：<%= book.created_at.to_s(:datetime_jp) %></li>
+            <li>更新：<%= book.updated_at.to_s(:datetime_jp) %></li>
+          </ul>
+          <% if user_signed_in? && current_user == book.user %>
           <%= link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3' %>
           <%= link_to '削除', book, method: :delete, data: { confirm: "本「#{book.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %>
-        </td>
-      </tr>
-    </tbody>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <% end %>
-  </table>
-  <%= paginate @books %>
+  </div>
+</div>
+<%= paginate @books %>
