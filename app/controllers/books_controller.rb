@@ -6,8 +6,10 @@ class BooksController < ApplicationController
     @q = Book.ransack(params[:q])
     books = @q.result.includes(:user)
     books = books.where(id: params[:ids]) if params[:ids].present?
-    books = books.tagged_with(params[:tag_list], any: true) if params[:tag_list].present?
-    @books = books.page(params[:page]).per(5)
+    if params[:tag_list].present?
+      books = books.tagged_with(params[:tag_list], any: true)
+    end
+    @books = books.page(params[:page]).per(6)
   end
 
   def show
@@ -23,7 +25,7 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to @book, notice: '本の登録が完了しました。' }
         format.json { render json: @book, status: :created }
       else
         format.html { render :new }
@@ -37,7 +39,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to @book, notice: '本の更新が完了しました。' }
         format.json { render json: @book, status: :ok }
       else
         format.html { render :edit }
@@ -49,14 +51,18 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to books_url, notice: '本の削除が完了しました。' }
       format.json { head :no_content }
     end
   end
 
   def favorite
     @book = Book.includes(:favorites).find(params[:book_id])
-    @book.has_favorites?(current_user) ? @book.unlike(current_user.id) : @book.like(current_user.id)
+    if @book.has_favorites?(current_user)
+      @book.unlike(current_user.id)
+    else
+      @book.like(current_user.id)
+    end
     render :favorite
   end
 
