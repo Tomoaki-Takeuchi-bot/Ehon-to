@@ -27,7 +27,7 @@ class User < ApplicationRecord # :confirmable, :lockable, :timeoutable, :trackab
 
   attr_accessor :current_password
 
-  THUMBNAIL_SIZE = [100, 100]
+  THUMBNAIL_SIZE = [100, 100].freeze
   mount_uploader :image, ImageUploader
 
   validates :name, presence: true, length: { maximum: 30 }
@@ -52,9 +52,7 @@ class User < ApplicationRecord # :confirmable, :lockable, :timeoutable, :trackab
   has_many :followers, through: :reverse_of_relationships, source: :user #---
 
   def follow(other_user_id)
-    unless id == other_user_id.to_i
-      relationships.find_or_create_by(follow_id: other_user_id)
-    end
+    relationships.find_or_create_by(follow_id: other_user_id) unless id == other_user_id.to_i
   end
 
   def unfollow(other_user_id)
