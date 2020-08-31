@@ -1,17 +1,23 @@
-<h1>Users</h1>
+<div class="container">
+  <div class="col-sm-4 m-3">
+    <h1>全ユーザー</h1>
+  </div>
 
-<%= search_form_for @q do |f| %>
-  <%= f.search_field :name_cont, placeholder: "Search by name" %>
-  <%= submit_tag "Search", class: "btn btn-outline-info btn-sm" %>
-<% end %>
+  <div class="col-sm-4 mb-5">
+    <%= paginate @users %>
+    <%= search_form_for @q do |f| %>
+    <%= f.search_field :name_cont, placeholder: "ユーザー名検索" %>
+    <%= submit_tag "検索", class: "btn btn-outline-info btn-sm" %>
+    <% end %>
+  </div>
 
-<%= paginate @users %>
-
-<% @users.each do |user| %>
-  <div class="my-3">
+  <% @users.each do |user| %>
+  <div class="col-sm-4 my-3">
     <%= avator_tag(user) %>
     <%= link_to user.name, user, class: 'h2' %>
   </div>
-<% end %>
+  <% end %>
 
-<%= paginate @users %>
+  <%= paginate @users %>
+</div>
+</div>

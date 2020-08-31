@@ -6,9 +6,7 @@ class BooksController < ApplicationController
     @q = Book.ransack(params[:q])
     books = @q.result.includes(:user)
     books = books.where(id: params[:ids]) if params[:ids].present?
-    if params[:tag_list].present?
-      books = books.tagged_with(params[:tag_list], any: true)
-    end
+    books = books.tagged_with(params[:tag_list], any: true) if params[:tag_list].present?
     @books = books.page(params[:page]).per(6)
   end
 
