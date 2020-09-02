@@ -1,14 +1,35 @@
-<h4>コメント一覧</h4>
+<div class="container">
+  <div class="row justify-content-center">
+    <h4>コメント一覧</h4>
+  </div>
+</div>
+<hr />
 
 <% @book.comments.each do |comment| %>
-<div>
-  <%= avator_tag(comment.user) %>
-
-  <strong><%= comment.user.name %></strong>
-  <small><%= comment.created_at.strftime("%Y/%m/%d") %></small>
-  <% if comment.user == current_user %>
-    <%= link_to "削除", book_comment_path(@book, comment), class:'btn btn-sm btn-outline-danger', method: :delete, remote: true %>
-  <% end %>
-  <p><%= comment.comment %></p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= avator_tag(comment.user) %>
+      <strong><%= comment.user.name %></strong>
+      <small><%= comment.created_at.strftime("%Y/%m/%d") %></small>
+      <% if comment.user == current_user %>
+      <%= link_to "削除", book_comment_path(@book, comment),
+                          class:'btn btn-sm btn-outline-danger ml-5',
+                          method: :delete,
+                          remote: true %>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+<div class="comments__word__wrap">
+  <div class="container m-3">
+    <div class="row">
+      <div class="col">
+        <p><%= comment.comment %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
 <% end %>
