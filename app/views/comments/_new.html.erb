@@ -1,16 +1,18 @@
-<div id="comments-form">
   <% if user_signed_in? %>
-    <div class="d-comment__Box">
-      <p class="d-comment__Title">コメント入力（５００文字以内）</p>
-      <%= form_for :comment, url: book_comments_path(@book), remote: true do |f| %>
-        <div class="form-group">
-          <%= f.text_area :comment, id: "comments_body", class: "form-control", rows: 20 %>
-        </div>
-      <%= f.submit "コメント", class: 'btn btn-primary' %>
-      <% end %>
+  <div class="comment__Box">
+    <%= form_for :comment, url: book_comments_path(@book), remote: true do |f| %>
+    <div class="form-group">
+      <%= f.text_area :comment,
+                      class: "form-control",
+                      placeholder: "本の感想をどうぞ！（500文字以内）",
+                      rows: 3 %>
     </div>
-    <div id="comments">
-      <%= render partial: 'comments/index' %>
-    </div>
+    <%= f.submit "コメントを投稿する", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <hr />
+  <div id="comments">
+    <%= render partial: 'comments/index' %>
+  </div>
   <% end %>
-</div>
+  </div>
