@@ -1,6 +1,6 @@
 <span id="favorites">
   <%= link_to book_favorite_path(@book), method: :post, remote: true, class: "heart" do %>
-    <%= heart_icon(@book) %>
+  <%= heart_icon(@book) %>
   <% end %>
-  <%= @book.favorites.count %>
+  <%= "この本いいね [#{@book.favorites.count}]" %>
 </span>
