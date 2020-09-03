@@ -20,7 +20,8 @@
       <div class="accordion" id="accordion-base">
         <div class="card text-center">
           <div class="card-header" id="books-search">
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card-base" aria-expanded="true" aria-controls="card-base">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card-base"
+              aria-expanded="true" aria-controls="card-base">
               <h3>本の検索</h3>
               <h5>＊ここからカテゴリとキーワード検索できます＊</h5>
             </button>
@@ -42,14 +43,15 @@
   </div>
 </div>
 
-<!--本カード-->
 <%= paginate @books %>
+
+<!--本カード-->
 <div class="container">
   <div class="row justify-content-center">
     <% @books.each do |book| %>
     <div class="col-sm-4 mb-2">
       <div class="card">
-        <div class="card-img-top img-fluid text-center">
+        <div class="card-img-top, text-center">
           <%= img_tag(book)%>
         </div>
         <div class="card-body">
