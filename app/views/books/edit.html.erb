@@ -5,9 +5,9 @@
 
   <!-- 一覧画面へ戻る機能 -->
   <h1>本の更新</h1>
-    <div class="nav justify-content-end">
-      <%= link_to '一覧', :books, class:'btn btn-outline-dark ml-auto' %>
-    </div>
+  <div class="nav justify-content-end">
+    <%= link_to '一覧', :books, class:'btn btn-outline-dark ml-auto' %>
+  </div>
 
   <!-- パーシャル(form) -->
   <%= render partial: 'form', locals: { book: @book } %>

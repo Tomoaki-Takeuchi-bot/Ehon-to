@@ -48,12 +48,13 @@ class Book < ApplicationRecord
   validates :author_name, presence: true
   validates :image, presence: true
 
-  scope :find_with_comments, lambda { |id|
-    includes(:favorites, comments: :user).find(id)
-  }
+  scope :find_with_comments,
+        ->(id) { includes(:favorites, comments: :user).find(id) }
 
   def has_favorites?(favorite_user)
-    favorites.to_a.find { |favorite| favorite.user_id == favorite_user.id }.present?
+    favorites.to_a.find do |favorite|
+      favorite.user_id == favorite_user.id
+    end.present?
   end
 
   def like(favorite_user_id)

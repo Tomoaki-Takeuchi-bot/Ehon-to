@@ -4,7 +4,8 @@ module DeviseHelper
 
     html = ''
     resource.errors.full_messages.each do |error_message|
-      html += <<-EOF
+      html +=
+        <<-EOF
       <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert">
           <span aria-hidden="true">&times;</span>
@@ -12,7 +13,7 @@ module DeviseHelper
         </button>
         #{error_message}
       </div>
-      EOF
+        EOF
     end
     html.html_safe
   end

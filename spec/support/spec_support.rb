@@ -36,13 +36,13 @@ module SpecSupport
 
   # Domの読み込みが完了するまで待つメソッド
   def wait_until(wait_time = Capybara.default_max_wait_time)
-    Timeout.timeout(wait_time) do
-      loop until yield
-    end
+    Timeout.timeout(wait_time) { loop until yield }
   end
 
   # 任意のタイミングのスクリーンショットを撮影するメソッド
   def take_screenshot
-    page.save_screenshot(Rails.root.join('tmp', 'screenshots', "debug-#{Time.now.to_i}.png"))
+    page.save_screenshot(
+      Rails.root.join('tmp', 'screenshots', "debug-#{Time.now.to_i}.png")
+    )
   end
 end

@@ -1,7 +1,6 @@
 class ImageUploader < CarrierWave::Uploader::Base # include CarrierWave::RMagick # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
 
-
   # Choose what kind of storage to use for this uploader:
   # 開発環境はfile保管、本番環境はaws S3バケットに保管
   if Rails.env.production?
