@@ -30,7 +30,7 @@ gem 'devise-i18n'
 # ダミーデータ作成
 # gem "faker", "~> 2.13"
 # aws画像up
-# gem "fog-aws", "~> 3.6", ">= 3.6.6"
+gem 'fog-aws'
 # font
 # gem "font-awesome-sass", "~> 5.13"
 # pagenation
