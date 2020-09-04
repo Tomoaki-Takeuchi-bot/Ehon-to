@@ -37,9 +37,7 @@ RSpec.describe Book, type: :model do
     end
 
     context 'has favorites' do
-      before do
-        book.like(user.id)
-      end
+      before { book.like(user.id) }
       it 'true' do
         expect(subject).to eq(true)
       end

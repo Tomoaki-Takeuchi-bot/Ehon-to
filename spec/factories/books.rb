@@ -33,9 +33,7 @@ FactoryBot.define do
     isbn { '4-7690-2017-1' }
 
     trait :book_with_comment do
-      after(:create) do |book|
-        3.times { create(:comment, book: book) }
-      end
+      after(:create) { |book| 3.times { create(:comment, book: book) } }
     end
 
     trait :with_image do

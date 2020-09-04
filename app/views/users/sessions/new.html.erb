@@ -4,37 +4,37 @@
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email,
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email,
                         autofocus: true,
                         autocomplete: "email",
                         class: 'form-control',
                         required: true,
                         maxlength: '100' %>
-    </div>
+  </div>
 
-    <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "current-password",
+  <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "current-password",
                             class: 'form-control',
                             required: true,
                             minlength: @minimum_password_length,
                             maxlength: '30' %>
-    </div>
+  </div>
 
-    <% if devise_mapping.rememberable? %>
-      <div class="form-group form-check">
-        <%= f.check_box :remember_me, class: 'form-check-input' %>
-        <%= f.label :remember_me, class: 'form-check-label' do %>
-          <%= resource.class.human_attribute_name('remember_me') %>
-        <% end %>
-      </div>
+  <% if devise_mapping.rememberable? %>
+  <div class="form-group form-check">
+    <%= f.check_box :remember_me, class: 'form-check-input' %>
+    <%= f.label :remember_me, class: 'form-check-label' do %>
+    <%= resource.class.human_attribute_name('remember_me') %>
     <% end %>
+  </div>
+  <% end %>
 
-    <div class="form-group">
-      <%= f.submit "ログイン", class:"btn btn-primary" %>
-    </div>
+  <div class="form-group">
+    <%= f.submit "ログイン", class:"btn btn-primary" %>
+  </div>
   <% end %>
   <!-- TODO 簡単ログイン機能-->
   <%= render "users/shared/links" %>

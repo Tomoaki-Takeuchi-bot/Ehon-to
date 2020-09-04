@@ -8,9 +8,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'GET /users' do
     before do
-      (1..2).each do |index|
-        create(:user, name: "User#{index}#{timestamp}")
-      end
+      (1..2).each { |index| create(:user, name: "User#{index}#{timestamp}") }
     end
     it 'render to index page' do
       get users_path
@@ -45,9 +43,9 @@ RSpec.describe 'Users', type: :request do
 
     context 'not followed' do
       it 'follow' do
-        expect do
-          post user_follow_path(other_user), xhr: true
-        end.to change { Relationship.count }.by(1)
+        expect { post user_follow_path(other_user), xhr: true }.to change {
+          Relationship.count
+        }.by(1)
         expect(current_user.following?(other_user)).to eq(true)
       end
     end
@@ -56,9 +54,9 @@ RSpec.describe 'Users', type: :request do
       it 'unfollow' do
         current_user.follow(other_user.id)
         expect(current_user.following?(other_user)).to eq(true)
-        expect do
-          post user_follow_path(other_user), xhr: true
-        end.to change { Relationship.count }.by(-1)
+        expect { post user_follow_path(other_user), xhr: true }.to change {
+          Relationship.count
+        }.by(-1)
         expect(current_user.following?(other_user)).to eq(false)
       end
     end

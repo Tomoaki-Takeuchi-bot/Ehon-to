@@ -22,7 +22,9 @@ require 'rspec/rails'
 #
 
 # --追加事項 support配下のテスト読み込み --
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each do |f|
+  require f
+end
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -76,9 +78,10 @@ RSpec.configure do |config|
   # --追加項目 --
   # Capybaraのセッティング
   config.before(:each, type: :system) do
-    Capybara.default_driver    = :selenium_chrome
+    Capybara.default_driver = :selenium_chrome
     Capybara.javascript_driver = :selenium_chrome
-    Capybara.server_host = Socket.ip_address_list.detect(&:ipv4_private?).ip_address
+    Capybara.server_host =
+      Socket.ip_address_list.detect(&:ipv4_private?).ip_address
     Capybara.server_port = 3001
     Capybara.default_max_wait_time = 5
     Capybara.ignore_hidden_elements = true

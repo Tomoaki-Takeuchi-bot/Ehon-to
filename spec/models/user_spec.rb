@@ -21,20 +21,17 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  before do
-    @user = build(:user)
-  end
+  before { @user = build(:user) }
 
   it '有効：ファクトリー確認' do
     expect(build(:user)).to be_valid
   end
 
   it '有効：名前、メール、パスワードがある場合' do
-    user = User.new(
-      name: 'TestUser',
-      email: 'test@example.com',
-      password: 'password'
-    )
+    user =
+      User.new(
+        name: 'TestUser', email: 'test@example.com', password: 'password'
+      )
     expect(user).to be_valid
   end
 
@@ -53,9 +50,7 @@ RSpec.describe User, type: :model do
   context 'フォロー状態の確認' do
     subject { user.following?(other_user) }
     context 'フォローしている時' do
-      before do
-        user.follow(other_user.id)
-      end
+      before { user.follow(other_user.id) }
       it 'trueを返す' do
         expect(subject).to eq(true)
       end
