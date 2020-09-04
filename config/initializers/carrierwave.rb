@@ -1,4 +1,3 @@
-
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.storage = :fog
@@ -9,11 +8,12 @@ if Rails.env.production?
       provider: 'AWS',
       region: 'ap-northeast-1',
       aws_access_key_id: Rails.application.credentials.aws[:access_key_id],
-      aws_secret_access_key: Rails.application.credentials.aws[:secret_access_key],
+      aws_secret_access_key:
+        Rails.application.credentials.aws[:secret_access_key]
     }
-    # <TODO>
+    # <TODO 追加機能検討要素 https化>
     # CloudFront設定
-    config.asset_host = 'https://s3-apnortheast-1.amazonaws.com/ehon-to'
+    config.asset_host = 'http://image.ehon-to.net'
   end
 end
 
