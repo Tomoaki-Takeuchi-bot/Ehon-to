@@ -1,30 +1,33 @@
-<h2>
-  <%= avator_tag(@user) %>
-</h2>
+<div class="container">
+  <div class="col sm-4 mt-3 ">
+    <%= avator_tag(@user) %>
+  </div>
 
-<h5>
-  <strong>名前</strong> : <%= @user.name %>
-</h5>
+  <div class="col sm-4 mt-3">
+    <h3><strong>名前</strong> : <%= @user.name %></h3>
+  </div>
 
-<h5>
-  <strong>メール</strong> : <%= @user.email %>
-</h5>
+  <div class="col sm-4 mt-3">
+    <h3><strong>メール</strong> : <%= @user.email %></h3>
+  </div>
+  <hr />
 
-<% if @user.id == current_user.id %>
-<div class="my-4">
-  <h5>好きな本のタグリスト</h5>
-  <% favorites_group_by_tag(current_user.favorite_books).each do |tag, ids| %>
-  <%= link_to books_path(ids: ids) do %>
-  <span class="badge badge-primary my-2 mr-1 p-2"><%= tag %></span> <%= ids.size %>
-  <% end %><br />
-  <% end %>
-</div>
-<% end %>
-
-<div class="my-2">
   <% if @user.id == current_user.id %>
-  <%= link_to 'Edit', edit_user_registration_path(current_user), class: "btn btn-outline-success btn-sm" %>
-  <% else %>
-  <%= render partial: 'follow' %>
+  <div class="col sm-4 my-4">
+    <h4>『好きな本のタグリスト』</h4>
+    <% favorites_group_by_tag(current_user.favorite_books).each do |tag, ids| %>
+    <%= link_to books_path(ids: ids) do %>
+    <span class="badge badge-info my-2 mr-1 p-2"><%= tag %></span> <%= "#{ids.size}冊" %>
+    <% end %><br />
+    <% end %>
+  </div>
   <% end %>
+
+  <div class="my-2">
+    <% if @user.id == current_user.id %>
+    <%= link_to 'Edit', edit_user_registration_path(current_user), class: "btn btn-outline-success btn-sm" %>
+    <% else %>
+    <%= render partial: 'follow' %>
+    <% end %>
+  </div>
 </div>

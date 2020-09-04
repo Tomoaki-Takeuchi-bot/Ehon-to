@@ -24,9 +24,9 @@ module ApplicationHelper
   def follow_button(user)
     label, key =
       if current_user.following?(user)
-        %w[Unfollow secondary]
+        %w[フォローしない secondary]
       else
-        %w[Follow primary]
+        %w[フォローする primary]
       end
     link_to(
       label,
