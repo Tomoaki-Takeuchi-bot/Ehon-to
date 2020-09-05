@@ -1,0 +1,103 @@
+inherit_from:
+  - .rubocop_todo.yml
+
+# -----------------------------------------------------
+# Rubocop設定
+# @sea https://docs.rubocop.org/rubocop/0.86/configuration.html#includingexcluding-files
+
+AllCops:
+  # Versioningによるエラー回避の為指定
+  NewCops: disable
+  TargetRubyVersion: 2.6.6
+  #除外ファイル
+  Exclude:
+    - "db/**/*"
+    - "bin/bundle"
+    - "config/**/*"
+    - "script/**/*"
+    - "node_modules/**/*"
+    - "bin/{rails,rake}"
+    - !ruby/regexp /old_and_unused\.rb$/
+
+# -----------------------------------------------------
+
+# 日本語のコメント許可
+Style/AsciiComments:
+  Enabled: false
+
+# Line lengthの設定解除
+Layout/LineLength:
+  Enabled: false
+
+# 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# モジュール名::クラス名の定義を許可
+# Use nested module/class definitions instead of compact style.
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# クラスのコメント必須設定解除
+# Missing top-level class documentation comment.
+# ex):Description/Explanation of --- class
+Style/Documentation:
+  Enabled: false
+
+# -----------------------------------------------------
+# Rubocop_todo.ymlより移行
+# -----------------------------------------------------
+
+# メトリクスのABCsizeをチェックから除外
+# Offense count: 3
+# Configuration parameters: IgnoredMethods.
+Metrics/AbcSize:
+  Max: 29
+
+# ブロック長をチェックから除外
+# Offense count: 14
+# Configuration parameters: CountComments, CountAsOne, ExcludedMethods.
+# ExcludedMethods: refine
+Metrics/BlockLength:
+  Max: 257
+
+# メソッド長をチェックから除外
+# Offense count: 3
+# Configuration parameters: CountComments, CountAsOne, ExcludedMethods.
+Metrics/MethodLength:
+  Max: 14
+
+# Here EOFでのエラーgem(devise)設定の為除外
+# Offense count: 1
+# Configuration parameters: ForbiddenDelimiters.
+# ForbiddenDelimiters: (?-mix:(^|\s)(EO[A-Z]{1}|END)(\s|$))
+Naming/HeredocDelimiterNaming:
+  Exclude:
+    - "app/helpers/devise_helper.rb"
+
+# いいね設定def has_favorites? でのhasの使用。
+# 使用用途がわかるようにネーミングの為、検査より除外
+# Offense count: 1
+# Configuration parameters: NamePrefix, ForbiddenPrefixes, AllowedMethods, MethodDefinitionMacros.
+# NamePrefix: is_, has_, have_
+# ForbiddenPrefixes: is_, has_, have_
+# AllowedMethods: is_a?
+# MethodDefinitionMacros: define_method, define_singleton_method
+Naming/PredicateName:
+  Exclude:
+    - "app/models/book.rb"
+
+# コード記載行にコメントの実施。
+#コメント指摘該当箇所を明示する為に使用。検査より除外
+# Offense count: 2
+Style/CommentedKeyword:
+  Exclude:
+    - "app/models/user.rb"
+    - "app/uploaders/image_uploader.rb"
+
+# ブロックの複数行チェーン規制。タグの表示変更に使用。
+# 使用用途がわかりやすくする為に使用。検査より除外
+# Offense count: 1
+Style/MultilineBlockChain:
+  Exclude:
+    - "app/helpers/application_helper.rb"
