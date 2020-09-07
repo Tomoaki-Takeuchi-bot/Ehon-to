@@ -41,3 +41,6 @@ memo.md
 # image Uploader
 /public/uploads
 .viminfo
+
+# rubocop.todo.yml
+.rubocop_todo.yml
