@@ -90,4 +90,15 @@ Rails.application.configure do
   # --追加項目（Bettar Error）設定ーー
   # https://github.com/BetterErrors/better_errors/issues/270
   BetterErrors::Middleware.allow_ip! '0.0.0.0/0' if Rails.env.development?
+
+  # --追加項目--
+  # Bullet(N+1問題対処)
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+  end
 end
