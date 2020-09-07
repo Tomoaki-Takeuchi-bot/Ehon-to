@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def favorites_group_by_tag(books)
-    books.map(&:tag_list).flatten.uniq.map do |tag|
+    books.includes(%i[taggings]).map(&:tag_list).flatten.uniq.map do |tag|
       # Bookに登録しているタグを抽出、flattenで再帰的に配列、重複要素を除く
       ids =
         books.tagged_with(tag).ids # タグに紐づくいいねした本を抽出、id取得
