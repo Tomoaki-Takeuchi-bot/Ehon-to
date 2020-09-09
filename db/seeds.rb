@@ -10,8 +10,7 @@ Faker::Config.locale = :ja
     name: name,
     email: email,
     password: password,
-    password_confirmation: password,
-    created_at: Time.zone.now
+    password_confirmation: password
   )
 end
 
@@ -23,8 +22,7 @@ User.find_by(email: 'sample-1@example.com').books.create!(
   publisher: '福音館書店',
   author_name: '林明子',
   price: 1300,
-  isbn: '9784834008302',
-  created_at: Random.rand(Time.zone.now..Time.zone.now.next_year)
+  isbn: '9784834008302'
 )
 
 User.find_by(email: 'sample-2@example.com').books.create!(
@@ -34,8 +32,7 @@ User.find_by(email: 'sample-2@example.com').books.create!(
   publisher: '福音館書店',
   author_name: '五味太郎',
   price: 900,
-  isbn: '9784834008999',
-  created_at: Random.rand(Time.zone.now..Time.zone.now.next_year)
+  isbn: '9784834008999'
 )
 
 User.find_by(email: 'sample-3@example.com').books.create!(
@@ -45,8 +42,7 @@ User.find_by(email: 'sample-3@example.com').books.create!(
   publisher: 'ポプラ社',
   author_name: 'せなけいこ',
   price: 1200,
-  isbn: '9784591004890',
-  created_at: Random.rand(Time.zone.now..Time.zone.now.next_year)
+  isbn: '9784591004890'
 )
 
 User.find_by(email: 'sample-4@example.com').books.create!(
@@ -56,8 +52,7 @@ User.find_by(email: 'sample-4@example.com').books.create!(
   publisher: '福音館書店',
   author_name: 'マーガレット・ブロイ・グレアム',
   price: 1200,
-  isbn: '9784834000207',
-  created_at: Random.rand(Time.zone.now..Time.zone.now.next_year)
+  isbn: '9784834000207'
 )
 
 User.find_by(email: 'sample-5@example.com').books.create!(
@@ -67,8 +62,7 @@ User.find_by(email: 'sample-5@example.com').books.create!(
   publisher: '評論社',
   author_name: 'ハンス・ウィルヘルム',
   price: 1200,
-  isbn: '9784566002760',
-  created_at: Random.rand(Time.zone.now..Time.zone.now.next_year)
+  isbn: '9784566002760'
 )
 
 User.find_by(email: 'sample-6@example.com').books.create!(
@@ -78,8 +72,7 @@ User.find_by(email: 'sample-6@example.com').books.create!(
   publisher: '童心社',
   author_name: 'ふるたたるひ',
   price: 1300,
-  isbn: '9784494006069',
-  created_at: Random.rand(Time.zone.now..Time.zone.now.next_year)
+  isbn: '9784494006069'
 )
 
 User.find_by(email: 'sample-7@example.com').books.create!(
@@ -89,8 +82,7 @@ User.find_by(email: 'sample-7@example.com').books.create!(
   publisher: '好学社',
   author_name: 'レオ・レオニ',
   price: 1456,
-  isbn: '9784769020011',
-  created_at: Random.rand(Time.zone.now..Time.zone.now.next_year)
+  isbn: '9784769020011'
 )
 
 User.find_by(email: 'sample-8@example.com').books.create!(
@@ -100,8 +92,7 @@ User.find_by(email: 'sample-8@example.com').books.create!(
   publisher: '徳間書店',
   author_name: 'デヴィット・ウィーズナー',
   price: 1400,
-  isbn: '9784198611910',
-  created_at: Random.rand(Time.zone.now..Time.zone.now.next_year)
+  isbn: '9784198611910'
 )
 
 User.find_by(email: 'sample-9@example.com').books.create!(
@@ -111,8 +102,7 @@ User.find_by(email: 'sample-9@example.com').books.create!(
   publisher: '小学館',
   author_name: 'くすのきしげのり',
   price: 1500,
-  isbn: '9784097263296',
-  created_at: Random.rand(Time.zone.now..Time.zone.now.next_year)
+  isbn: '9784097263296'
 )
 
 User.find_by(email: 'sample-10@example.com').books.create!(
@@ -122,6 +112,5 @@ User.find_by(email: 'sample-10@example.com').books.create!(
   publisher: '好学社',
   author_name: 'レオ・レオニ',
   price: 1456,
-  isbn: '9784769020172',
-  created_at: Random.rand(Time.zone.now..Time.zone.now.next_year)
+  isbn: '9784769020172'
 )
