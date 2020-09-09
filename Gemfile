@@ -28,7 +28,7 @@ gem 'devise', '~> 4.7', '>= 4.7.2'
 # devise日本語化
 gem 'devise-i18n'
 # ダミーデータ作成
-# gem "faker", "~> 2.13"
+gem "faker"
 # aws画像up
 gem 'fog-aws'
 # font
