@@ -1,6 +1,13 @@
 <div class="container">
-  <div class="col sm-4 mt-3 ">
-    <%= avator_tag(@user) %>
+  <div class="row m-3">
+    <div class="col m-3">
+      <%= avator_tag(@user) %>
+      <% if @user.id == current_user.id %>
+      <%= link_to 'マイページの編集', edit_user_registration_path(current_user), class: "btn btn-outline-success btn-sm" %>
+      <% else %>
+      <%= render partial: 'follow' %>
+      <% end %>
+    </div>
   </div>
 
   <div class="col sm-4 mt-3">
@@ -11,23 +18,45 @@
     <h3><strong>メール</strong> : <%= @user.email %></h3>
   </div>
   <hr />
+</div>
 
-  <% if @user.id == current_user.id %>
-  <div class="col sm-4 my-4">
-    <h4>『好きな本のタグリスト』</h4>
-    <% favorites_group_by_tag(current_user.favorite_books).each do |tag, ids| %>
-    <%= link_to books_path(ids: ids) do %>
-    <span class="badge badge-info my-2 mr-1 p-2"><%= tag %></span> <%= "#{ids.size}冊" %>
-    <% end %><br />
-    <% end %>
-  </div>
+<% if @user.id == current_user.id %>
+<div class="container text-center">
+  <h4><span class="badge badge-light">『好きな本のタグリスト』</span></h4>
+  <% favorites_group_by_tag(current_user.favorite_books).each do |tag, ids| %>
+  <%= link_to books_path(ids: ids) do %>
+  <span class="badge badge-info my-2 mr-1 p-2"><%= tag %></span> <%= "#{ids.size}冊" %>
+  <% end %><br />
   <% end %>
 
-  <div class="my-2">
-    <% if @user.id == current_user.id %>
-    <%= link_to 'Edit', edit_user_registration_path(current_user), class: "btn btn-outline-success btn-sm" %>
-    <% else %>
-    <%= render partial: 'follow' %>
-    <% end %>
+  <% else %>
+  <div class="container text-center">
+    <h4>
+      <span class="badge badge-light">
+        <%= "#{@user.name}さんが投稿した本の一覧" %>
+      </span>
+    </h4>
   </div>
+  <div class="container">
+    <table class="table table-hover mt-3 mb-3">
+      <thead class="thead-default">
+        <tr>
+          <th>書籍名</th>
+          <th>タグ</th>
+      </thead>
+      <tbody>
+        <% @user.books.includes(:taggings).each do |book| %>
+        <tr>
+          <td><%= link_to book.name, book %></td>
+          <td>
+            <% book.tag_list.each do |tag| %>
+            <span class="badge badge-info my-2 mr-1 p-2"><%= tag %></span>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
 </div>
