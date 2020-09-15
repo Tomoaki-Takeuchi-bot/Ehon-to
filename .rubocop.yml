@@ -109,13 +109,7 @@ Style/GuardClause:
   Exclude:
     - "db/migrate/20200819054404_change_collation_for_tag_names.acts_as_taggable_on_engine.rb"
 
-# Offense count: 3
-# Cop supports --auto-correct.
+# linter設定（prettier）と干渉する為チェック項目より除外
+# if文の展開設定
 Style/IfUnlessModifier:
-  Exclude:
-    - "db/migrate/20200819054405_add_missing_indexes_on_taggings.acts_as_taggable_on_engine.rb"
-
-    # If文のLinterチェック prettierでのlintとrubocop側と異なる動きの為追加
-    # Offense count: 1
-    # Cop supports --auto-correct.
-    - "app/controllers/books_controller.rb"
+  Enabled: false
