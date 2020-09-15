@@ -1,8 +1,8 @@
 test:
   adapter: postgresql
   host: localhost
-  encoding: unicode
-  database: github_actions
+  encoding: utf8
+  database: github-actions
   pool: 20
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
