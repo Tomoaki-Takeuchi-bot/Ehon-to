@@ -15,11 +15,11 @@ RSpec.describe 'books', type: :system do
       it 'successfully like and dislike' do
         first('#favorites a').click
         wait_until { first('#favorites svg')['data-prefix'] == 'fas' }
-        expect(first('#favorites').text).to eq('1')
+        expect(first('#favorites').text).to eq('この本いいね [1]')
 
         first('#favorites a').click
         wait_until { first('#favorites svg')['data-prefix'] == 'far' }
-        expect(first('#favorites').text).to eq('0')
+        expect(first('#favorites').text).to eq('この本いいね [0]')
       end
     end
 
@@ -28,11 +28,11 @@ RSpec.describe 'books', type: :system do
       it 'successfully like and dislike' do
         first('#favorites a').click
         wait_until { first('#favorites svg')['data-prefix'] == 'fas' }
-        expect(first('#favorites').text).to eq('1')
+        expect(first('#favorites').text).to eq('この本いいね [1]')
 
         first('#favorites a').click
         wait_until { first('#favorites svg')['data-prefix'] == 'far' }
-        expect(first('#favorites').text).to eq('0')
+        expect(first('#favorites').text).to eq('この本いいね [0]')
       end
     end
   end
