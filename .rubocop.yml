@@ -1,7 +1,5 @@
-inherit_from: .rubocop_todo.yml
-
 # Rubocop設定
-# @sea https://docs.rubocop.org/rubocop/0.86/configuration.html#includingexcluding-files
+# ref: https://docs.rubocop.org/rubocop/0.86/configuration.html#includingexcluding-files
 
 AllCops:
   # Versioningによるエラー回避の為指定
