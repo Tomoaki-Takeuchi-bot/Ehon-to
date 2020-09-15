@@ -87,7 +87,7 @@ class BooksController < ApplicationController
   end
 
   def set_book
-    @book = Book.find_with_comments(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def check_role
