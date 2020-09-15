@@ -48,9 +48,6 @@ class Book < ApplicationRecord
   validates :author_name, presence: true
   validates :image, presence: true
 
-  scope :find_with_comments,
-        ->(id) { includes(:favorites, comments: :user).find(id) }
-
   def has_favorites?(favorite_user)
     favorites.to_a.find do |favorite|
       favorite.user_id == favorite_user.id

@@ -6,7 +6,9 @@ class BooksController < ApplicationController
     @q = Book.ransack(params[:q])
     books = @q.result.includes(:user)
     books = books.where(id: params[:ids]) if params[:ids].present?
-    books = books.tagged_with(params[:tag_list], any: true) if params[:tag_list].present?
+    if params[:tag_list].present?
+      books = books.tagged_with(params[:tag_list], any: true)
+    end
     @books = books.page(params[:page]).per(6)
   end
 
@@ -23,7 +25,9 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: '本の登録が完了しました。' }
+        format.html do
+          redirect_to books_url, notice: '本の登録が完了しました。'
+        end
         format.json { render json: @book, status: :created }
       else
         format.html { render :new }
@@ -37,7 +41,9 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: '本の更新が完了しました。' }
+        format.html do
+          redirect_to books_url, notice: '本の更新が完了しました。'
+        end
         format.json { render json: @book, status: :ok }
       else
         format.html { render :edit }
@@ -81,7 +87,7 @@ class BooksController < ApplicationController
   end
 
   def set_book
-    @book = Book.find_with_comments(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def check_role

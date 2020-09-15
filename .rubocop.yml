@@ -1,5 +1,5 @@
 # Rubocop設定
-# @sea https://docs.rubocop.org/rubocop/0.86/configuration.html#includingexcluding-files
+# ref: https://docs.rubocop.org/rubocop/0.86/configuration.html#includingexcluding-files
 
 AllCops:
   # Versioningによるエラー回避の為指定
@@ -97,7 +97,7 @@ Style/MultilineBlockChain:
   Exclude:
     - "app/helpers/application_helper.rb"
 
-# 下記gem act_as_taggable_onでの設定項目の為除外。
+# 下記3項目gem act_as_taggable_onでの設定項目の為除外。
 # Offense count: 1
 # Configuration parameters: IgnoredMethods.
 Metrics/CyclomaticComplexity:
@@ -114,3 +114,8 @@ Style/GuardClause:
 Style/IfUnlessModifier:
   Exclude:
     - "db/migrate/20200819054405_add_missing_indexes_on_taggings.acts_as_taggable_on_engine.rb"
+
+    # If文のLinterチェック prettierでのlintとrubocop側と異なる動きの為追加
+    # Offense count: 1
+    # Cop supports --auto-correct.
+    - "app/controllers/books_controller.rb"
