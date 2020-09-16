@@ -18,9 +18,7 @@ jobs:
 
       chrome:
         image: selenium/standalone-chrome
-        options:
-          --health-cmd='/opt/bin/check-grid.sh --host 0.0.0.0 --port 4444' \
-          --health-interval=15s --health-timeout=30s --health-retries=5 \
+        options: --health-cmd curl -f http://localhost/hub || exit 1 --health-timeout=30s --health-retries=5
         ports:
           - "4444:4444"
         volumes:
