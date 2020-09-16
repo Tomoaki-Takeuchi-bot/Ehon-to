@@ -1,7 +1,7 @@
 test:
   adapter: postgresql
-  host: localhost
-  encoding: unicode
+  host: db
+  encoding: utf-8
   database: github_actions
   pool: 20
   username: postgres
