@@ -130,7 +130,6 @@ RSpec.describe 'Books', type: :request do
                    )
                }
         end.to change { Book.count }.by(1)
-        book = Book.find_by(name: "Create book#{timestamp}")
         expect(response).to redirect_to(books_path)
         follow_redirect!
         expect(response.body).to include('本の登録が完了しました。')
