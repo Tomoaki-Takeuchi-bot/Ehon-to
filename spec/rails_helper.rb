@@ -3,7 +3,9 @@ require 'spec_helper'
 ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort('The Rails environment is running in production mode!') if Rails.env.production?
+if Rails.env.production?
+  abort('The Rails environment is running in production mode!')
+end
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -87,12 +89,9 @@ RSpec.configure do |config|
     Capybara.ignore_hidden_elements = true
 
     Capybara.register_driver :selenium_chrome do |app|
-      opts = {
-        desired_capabilities: :chrome,
-        browser: :remote,
-        url: ENV['SELENIUM_REMOTE_URL']
-      }
-      Capybara::Selenium::Driver.new(app, opts)
+      url = 'http://chrome:4444/wd/hub'
+      opts = { desired_capabilities: :chrome, browser: :remote, url: url }
+      driver = Capybara::Selenium::Driver.new(app, opts)
     end
 
     driven_by Capybara.javascript_driver
