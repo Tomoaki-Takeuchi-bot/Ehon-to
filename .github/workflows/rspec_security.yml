@@ -26,7 +26,6 @@ jobs:
           BUNDLE_JOBS: "3"
           BUNDLE_RETRY: "3"
           PGHOST: db
-          RAILS_ENV: test
 
     steps:
       # ref:https://github.com/actions/checkout
