@@ -18,6 +18,7 @@ jobs:
 
       chrome:
         image: selenium/standalone-chrome
+        options: --health-cmd "curl http://selenium:4444" --health-interval=5s
         ports:
           - "4444:4444"
         volumes:
