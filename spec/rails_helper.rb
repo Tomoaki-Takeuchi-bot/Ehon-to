@@ -89,7 +89,7 @@ RSpec.configure do |config|
     Capybara.ignore_hidden_elements = true
 
     Capybara.register_driver :selenium_chrome do |app|
-      url = ENV['SELENIUM_REMOTE_URL']
+      url = 'http://local:4444/wd/hub'
       opts = { desired_capabilities: :chrome, browser: :remote, url: url }
       Capybara::Selenium::Driver.new(app, opts)
     end
