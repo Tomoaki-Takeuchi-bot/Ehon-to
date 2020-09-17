@@ -87,6 +87,11 @@ jobs:
       # upload-artifactを使用してfailure時にデータを保存
       - name: run rspec
         run: bundle exec rspec
+        env:
+          RAILS_ENV: test
+          # 環境設定 localhostで実行しないとエラーになる
+          SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
+
       - name: Archive rspec result screenshots
         if: failure()
         uses: actions/upload-artifact@v2
