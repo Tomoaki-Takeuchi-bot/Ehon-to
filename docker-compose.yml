@@ -30,7 +30,7 @@ services:
     environment:
       HOME: /app
       RAILS_ENV: development
-      SELENIUM_REMOTE_URL: http://local:4444/wd/hub
+      SELENIUM_REMOTE_URL: http://chrome:4444/wd/hub
     ports:
       - "3000:3000"
       - "3035:3035"
