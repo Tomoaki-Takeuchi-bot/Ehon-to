@@ -2,6 +2,7 @@ name: Rails RSpec and security
 on: [push, pull_request]
 env:
   RAILS_ENV: test
+  CI_HOST: localhost
 
 jobs:
   build:
