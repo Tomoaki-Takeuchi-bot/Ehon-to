@@ -130,10 +130,9 @@ RSpec.describe 'Books', type: :request do
                    )
                }
         end.to change { Book.count }.by(1)
-        book = Book.find_by(name: "Create book#{timestamp}")
-        expect(response).to redirect_to(book_path(book))
+        expect(response).to redirect_to(books_path)
         follow_redirect!
-        expect(response.body).to include('Book was successfully created.')
+        expect(response.body).to include('本の登録が完了しました。')
         expect(response.body).to include("Create book#{timestamp}")
         expect(response.body).to include('ゆかいな話', 'ふしぎな話')
       end
@@ -203,9 +202,9 @@ RSpec.describe 'Books', type: :request do
             params: {
               book: { name: "Updated #{timestamp}", tag_list: %w[ふしぎな話] }
             }
-        expect(response).to redirect_to(book_path(book))
+        expect(response).to redirect_to(books_path)
         follow_redirect!
-        expect(response.body).to include('Book was successfully updated.')
+        expect(response.body).to include('本の更新が完了しました。')
         expect(response.body).to include("Updated #{timestamp}")
         expect(response.body).to include('ふしぎな話')
       end
@@ -260,7 +259,7 @@ RSpec.describe 'Books', type: :request do
         delete book_path(book)
         expect(response).to redirect_to(books_path)
         follow_redirect!
-        expect(response.body).to include('Book was successfully destroyed')
+        expect(response.body).to include('本の削除が完了しました。')
       end
     end
 
