@@ -22,10 +22,6 @@ jobs:
           - "4444:4444"
         volumes:
           - /dev/shm:/dev/shm
-        env:
-          BUNDLE_JOBS: "3"
-          BUNDLE_RETRY: "3"
-          PGHOST: db
 
     steps:
       # ref:https://github.com/actions/checkout
@@ -79,7 +75,6 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         run: |
-          cp config/database.yml.github-actions config/database.yml
           bundle exec rake db:create db:schema:load --trace
 
       # rspecによるテスト
