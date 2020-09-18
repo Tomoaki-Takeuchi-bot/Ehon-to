@@ -13,6 +13,8 @@ AllCops:
     - "node_modules/**/*"
     - "bin/{rails,rake}"
     - !ruby/regexp /old_and_unused\.rb$/
+      # ref:https://github.com/rubocop-hq/rubocop/issues/6398
+    - vendor/bundle/**/*
 
 # -----------------------------------------------------
 
