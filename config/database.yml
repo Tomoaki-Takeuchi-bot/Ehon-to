@@ -16,7 +16,7 @@ development:
 
 test:
   <<: *default
-  host: ENV.fetch("db") { "localhost" }
+  host: <%= ENV.fetch("db") { "localhost" } %>
 
 production:
   <<: *default
