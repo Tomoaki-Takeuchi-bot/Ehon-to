@@ -1,5 +1,7 @@
 name: Rails RSpec and security
 on: [push, pull_request]
+env:
+  RAILS_ENV: test
 
 jobs:
   build:
@@ -71,7 +73,6 @@ jobs:
       # db:schemaを使用
       - name: Setup test database
         env:
-          RAILS_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         run: |
@@ -82,7 +83,6 @@ jobs:
       - name: run rspec
         run: bundle exec rspec
         env:
-          RAILS_ENV: test
           # 環境変数設定 localhostで実行
           SELENIUM_REMOTE_URL: http://localhost:4444/wd/hub
 
