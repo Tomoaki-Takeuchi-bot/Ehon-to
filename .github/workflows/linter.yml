@@ -1,0 +1,54 @@
+name: Linter
+on: [push]
+
+jobs:
+  linters:
+    name: Linters
+    runs-on: ubuntu-latest
+    steps:
+      # ref:https://github.com/actions/checkout
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # ref:https://github.com/actions/setup-ruby
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+
+      # ref:https://github.com/actions/cache/blob/main/examples.md#ruby---bundler
+      - name: Ruby Bundler
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+        # yarnキャッシュのディレクトリ指定
+        # https://github.com/actions/cache/blob/main/examples.md#node---yarn
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+        # yarnのインストール
+      - name: yarn install
+        run: yarn install
+
+      # yarnのキャッシュ
+      # ref:https://github.com/actions/cache/blob/main/examples.md#node---yarn
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Run linters
+        # rubocopは 処理速度向上の為、parallelを使用
+        #（Use available CPUs to execute inspection in）
+        run: |
+          bundle exec rubocop --parallel
