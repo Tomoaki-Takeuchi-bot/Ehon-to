@@ -2,7 +2,8 @@
 <html>
 
 <head>
-  <title>Ehon-to</title>
+  <%= favicon_link_tag("http://image.ehon-to.net/DB/fixutures/images/ehon-to.ico") %>
+  <title><%= full_title(yield(:title)) %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
