@@ -36,3 +36,13 @@ yarn-debug.log*
 .yarn-integrity
 .bash_history
 memo.md
+/.local
+
+# image Uploader
+/public/uploads
+.viminfo
+
+# rubocop.todo.yml
+/.rubocop_todo.yml
+
+.DS_store

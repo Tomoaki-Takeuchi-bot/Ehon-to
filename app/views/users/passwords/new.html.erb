@@ -1,0 +1,28 @@
+<% provide :title, 'パスワード再設定メール送信' %>
+
+<div class="container-login">
+  <h1>パスワードの再設定</h1>
+  <p>アカウントに登録されたメールアドレス宛に、<br>
+    パスワード再設定用URLを記載したメールを送信します。</p>
+
+  <!-- TODO flashでのエラーメッセージ表示-->
+  <%= render "shared/flash_messages" %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+  <div class="form-group mt-5">
+    <%= f.label :email %><br />
+    <%= f.email_field :email,
+                      autofocus: true,
+                      autocomplete: "email",
+                      class: 'form-control',
+                      required: true,
+                      maxlength: '100' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "メールを送信する", class:"btn btn-primary" %>
+  </div>
+  <% end %>
+</div>

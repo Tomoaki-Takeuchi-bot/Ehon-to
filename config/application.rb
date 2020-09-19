@@ -34,12 +34,14 @@ module App
 
     # 追加事項（ジェネレーター設定）
     config.generators do |g|
-      g.test_framework :rspec
-      g.controller_specs false
-      g.view_specs false
-      # ----
-
-      config.generators.system_tests = nil
+      g.test_framework :rspec,
+                       controller_specs: false,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false
     end
+    # ----
+
+    config.generators.system_tests = nil
   end
 end

@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>App</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <%= favicon_link_tag("http://image.ehon-to.net/DB/fixutures/images/ehon-to.ico") %>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
+  <%= stylesheet_pack_tag 'application', media: 'all' %>
+  <%= javascript_pack_tag 'application' %>
+
+  <meta charaset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content=" 『Ehon-to』は 幼少期向けの読書履歴・おすすめをユーザー間で行えるサイトです。">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="format-detection" content="telephone=no">
+</head>
+
+<body>
+  <%= render 'header' %>
+  <div class="main-contents">
     <%= yield %>
-  </body>
+  </div>
+  <%= render 'footer' %>
+</body>
+
 </html>

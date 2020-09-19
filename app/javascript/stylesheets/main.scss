@@ -1,0 +1,34 @@
+// リンクデフォルト設定変更
+// カラーデフォルト青の為
+a.heart {
+  color: #e91e63;
+  text-decoration: none;
+}
+
+.avator {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.container-login {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}
+
+// 「ログインしました」などのフラッシュ用スタイル
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
+}

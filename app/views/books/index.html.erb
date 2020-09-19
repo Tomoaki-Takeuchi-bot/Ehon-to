@@ -1,0 +1,73 @@
+<% provide :title, '本の一覧' %>
+
+<div class="container pt-3">
+  <div class="row justify-content-center">
+    <h1>すべての本</h1>
+  </div>
+</div>
+
+<!--新規登録-->
+<div class="container my-3">
+  <div class="row justify-content-center">
+    <%= link_to '本を新規登録する', new_book_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<!-- 本の検索（アコーディオン反映）-->
+<div class="container mb-3">
+  <div class="row justify-content-center">
+    <div class="col-sm-12">
+      <div class="accordion" id="accordion-base">
+        <div class="card text-center">
+          <div class="card-header" id="books-search">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card-base"
+              aria-expanded="true" aria-controls="card-base">
+              <h3>本の検索</h3>
+              <h5>＊ここからカテゴリとキーワード検索できます＊</h5>
+            </button>
+          </div>
+          <div id="card-base" class="collapse" aria-labelledby="books-search" data-parent="#accordion-base">
+            <%= search_form_for @q do |f| %>
+            <div class="my-2">
+              <%= select_tag :tag_list, options_for_select(Book::TAGS), multiple: true, class: "enable-select2" %>
+            </div>
+            <div class="my-2">
+              <%= f.search_field :name_cont, placeholder: "キーワード", class: "py-1" %>
+            </div>
+            <%= submit_tag "Search", class: "btn btn-outline-info btn-sm" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= paginate @books %>
+
+<!--本カード-->
+<div class="container">
+  <div class="row justify-content-center">
+    <% @books.each do |book| %>
+    <div class="col-sm-4 mb-2">
+      <div class="card">
+        <div class="card-img-top, text-center">
+          <%= img_tag(book)%>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to book.name, book %></h5>
+          <ul style="list-style: none;">
+            <li>作成：<%= book.created_at.to_s(:datetime_jp) %></li>
+            <li>更新：<%= book.updated_at.to_s(:datetime_jp) %></li>
+          </ul>
+          <% if user_signed_in? && current_user == book.user %>
+          <%= link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3' %>
+          <%= link_to '削除', book, method: :delete, data: { confirm: "本「#{book.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<%= paginate @books %>

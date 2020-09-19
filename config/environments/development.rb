@@ -32,7 +32,27 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # --追加事項 gmail設定--
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  if Rails.application.credentials.gmail.present?
+    mail_address = Rails.application.credentials.gmail[:mail_address]
+    password = Rails.application.credentials.gmail[:password]
+  else
+    mail_address = 'admin@example.com'
+    password = 'password'
+  end
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    enable_starttls_auto: true,
+    address: 'smtp.gmail.com',
+    port: 587,
+    user_name: mail_address,
+    password: password,
+    authentication: 'plain'
+  }
 
   config.action_mailer.perform_caching = false
 
@@ -63,4 +83,22 @@ Rails.application.configure do
   # --追加事項（ウェブコンソール）--
   # 172.16.0.0-172.31.255.255まで
   config.web_console.whitelisted_ips = %w[172.16.0.0/12]
+
+  # --追加事項（deviseインストール) --
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # --追加項目（Bettar Error）設定ーー
+  # https://github.com/BetterErrors/better_errors/issues/270
+  BetterErrors::Middleware.allow_ip! '0.0.0.0/0' if Rails.env.development?
+
+  # --追加項目--
+  # Bullet(N+1問題対処)
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+    Bullet.add_footer = true
+  end
 end

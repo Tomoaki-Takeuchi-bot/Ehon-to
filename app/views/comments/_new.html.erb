@@ -1,0 +1,18 @@
+  <% if user_signed_in? %>
+  <div class="comment__Box">
+    <%= form_for :comment, url: book_comments_path(@book), remote: true do |f| %>
+    <div class="form-group">
+      <%= f.text_area :comment,
+                      class: "form-control",
+                      placeholder: "本の感想をどうぞ！（500文字以内）",
+                      rows: 3 %>
+    </div>
+    <%= f.submit "コメントを投稿する", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+  <hr />
+  <div id="comments">
+    <%= render partial: 'comments/index' %>
+  </div>
+  <% end %>
+  </div>
