@@ -1,5 +1,11 @@
+<% provide :title, 'アカウント編集' %>
+
 <div class="container-login">
-  <h2>マイページの編集</h2>
+  <h2>アカウント情報の編集</h2>
+
+  <div class="form-group">
+    <%= link_to "マイリスト", user_path(current_user.id), class: 'btn btn-warning btn-block mb-4' %>
+  </div>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= bootstrap_devise_error_messages! %>
