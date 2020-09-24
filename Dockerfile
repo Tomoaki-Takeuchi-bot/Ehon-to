@@ -11,12 +11,12 @@ ENV XDG_CACHE_HOME /tmp
 EXPOSE 3000
 
 # install package to docker container
+# buid-essential: build tool, libpq-dev: for postgres, less: command
 RUN apt-get update -qq && apt-get install -y \
     build-essential \
     libpq-dev \
     vim \
-    less \
-    graphviz
+    less
 
 # install yarn
 RUN apt-get install apt-transport-https
