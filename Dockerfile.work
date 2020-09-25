@@ -33,6 +33,3 @@ ENV HOME /app
 
 # executing bundle install
 COPY Gemfile /app/Gemfile
-
-# set current directory
-COPY . /app
