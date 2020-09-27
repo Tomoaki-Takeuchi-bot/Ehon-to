@@ -6,3 +6,6 @@
 
 - 2020.9.26
   v1.1.0 for Dockerfile production mode test
+
+- 2020.9.28
+  v1.2.0 (fix gemfile etc)
