@@ -22,3 +22,6 @@ test:
 production:
   <<: *default
   database: production
+  host: <%= ENV.fetch('DB_URL') { 'db' }
+  username: mywork
+  password: <%= ENV.fetch('DB_PASSWORD') { 'postgres' }
