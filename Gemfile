@@ -13,6 +13,8 @@ gem 'sass-rails'
 gem 'webpacker'
 
 # =====追加項目=====
+# フレームワーク
+gem 'bootstrap'
 # 画像投稿用
 gem 'carrierwave'
 # リサイズ
