@@ -11,3 +11,4 @@
   v1.2.0 (fix gemfile etc)
   v1.2.1
   v1.2.2 (revert database.yml)
+  v1.2.3 (revert hotfixes)
