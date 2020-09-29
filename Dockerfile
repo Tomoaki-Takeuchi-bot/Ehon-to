@@ -31,8 +31,13 @@ WORKDIR /app
 # setting environment value
 ENV HOME /app
 
-# executing bundle install
+# bundle install
 COPY Gemfile /app/Gemfile
+RUN bundle install
+
+# yarn install
+COPY yarn.lock /app/yarn.lock
+RUN yarn install
 
 # set current directory
 COPY . /app
