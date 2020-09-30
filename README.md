@@ -13,3 +13,6 @@
   v1.2.2 (revert database.yml)
   v1.2.3 (revert hotfixes)
   v1.2.4
+
+- 2020.9.30
+  v1.3.0 (Dockerfile revision)
