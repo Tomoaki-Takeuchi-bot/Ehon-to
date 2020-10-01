@@ -5,11 +5,11 @@ if Rails.env.production?
     config.fog_directory = 'ehon-to.image'
     config.fog_credentials = {
       # Amazon S3用の設定
+      # ENV:k8s Secretより環境変数取得
       provider: 'AWS',
       region: 'ap-northeast-1',
-      aws_access_key_id: Rails.application.credentials.aws[:access_key_id],
-      aws_secret_access_key:
-        Rails.application.credentials.aws[:secret_access_key]
+      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
     }
     # <TODO 追加機能検討要素 https化>
     # CloudFront設定
