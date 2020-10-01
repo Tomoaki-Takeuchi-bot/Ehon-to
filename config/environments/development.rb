@@ -35,7 +35,7 @@ Rails.application.configure do
   # --追加事項 gmail設定--
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  mail_address = ENV.fetch('MAIL_ADDRESS', 'mail_address')
+  mail_address = ENV.fetch('MAIL_ADDRESS', 'admin@example.com')
   password = ENV.fetch('MAIL_PASSWORD', 'password')
 
   config.action_mailer.raise_delivery_errors = true
