@@ -21,3 +21,4 @@
   v1.4.0 (Carrierwave env revision)
   v1.5.0 (mail-dev revision)
   v1.6.0 (credential release)
+  v1.6.1
