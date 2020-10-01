@@ -16,3 +16,6 @@
 
 - 2020.9.30
   v1.3.0 (Dockerfile revision)
+
+- 2020.10.1
+  v1.4.0 (Carrierwave env revision)
