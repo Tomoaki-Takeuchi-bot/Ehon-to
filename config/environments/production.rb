@@ -18,8 +18,8 @@ Rails.application.configure do
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
 
   # -----コメント追記-----
-  # credential不使用に変更
-  config.require_master_key = false
+  # credential: devise使用の為、再設定
+  config.require_master_key = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
