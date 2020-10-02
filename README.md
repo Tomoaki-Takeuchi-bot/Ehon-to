@@ -22,3 +22,6 @@
   v1.5.0 (mail-dev revision)
   v1.6.0 (credential release)
   v1.6.1
+
+- 2020.10.2
+  v1.6.2 (credentila reset)
