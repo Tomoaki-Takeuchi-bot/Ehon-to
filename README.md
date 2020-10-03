@@ -25,3 +25,6 @@
 
 - 2020.10.2
   v1.6.2 (credentila reset)
+
+- 2020.10.4
+  v1.6.3 (credential rebuild)
