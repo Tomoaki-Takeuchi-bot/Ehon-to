@@ -21,7 +21,7 @@ test:
 
 production:
   <<: *default
-  database: production
+  database: myworkdb
   host: <%= ENV['DB_URL'] %>
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
