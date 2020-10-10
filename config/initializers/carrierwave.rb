@@ -15,6 +15,7 @@ if Rails.env.production?
     # <TODO 追加機能検討要素 https化>
     # CloudFront設定
     config.asset_host = 'http://image.ehon-to.net'
+    config.fog_public = false
   end
 end
 
