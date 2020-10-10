@@ -29,5 +29,8 @@
 - 2020.10.4
   v1.6.3 (credential rebuild)
 
--2020.10.5
-v1.6.4 (database.yml production set)
+- 2020.10.5
+  v1.6.4 (database.yml production set)
+
+- 2020.10.10
+  v1.7.0 (fog error work)
