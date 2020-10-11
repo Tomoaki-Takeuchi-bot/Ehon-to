@@ -34,3 +34,6 @@
 
 - 2020.10.10
   v1.7.0 (fog error work)
+
+- 2020.10.11
+  v1.8.0 (CloudFront https)
