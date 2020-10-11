@@ -12,9 +12,8 @@ if Rails.env.production?
       aws_secret_access_key:
         Rails.application.credentials.aws[:secret_access_key]
     }
-    # <TODO 追加機能検討要素 https化>
     # CloudFront設定
-    config.asset_host = 'http://image.ehon-to.net'
+    config.asset_host = 'https://image.ehon-to.net'
     config.fog_public = false
   end
 end
