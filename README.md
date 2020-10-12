@@ -37,3 +37,6 @@
 
 - 2020.10.11
   v1.8.0 (CloudFront https)
+
+- 2020.10.12
+  v1.8.1(image https)
