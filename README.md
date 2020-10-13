@@ -40,3 +40,6 @@
 
 - 2020.10.12
   v1.8.1(image https)
+
+- 2020.10.13
+  v1.9.0(dockerfile revision)
