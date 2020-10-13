@@ -11,6 +11,8 @@ if Rails.env.production?
       aws_access_key_id: Rails.application.credentials.aws[:access_key_id],
       aws_secret_access_key:
         Rails.application.credentials.aws[:secret_access_key]
+      # ref:https://github.com/fog/fog/issues/3318 (fog warning s3バケットのドット含有)
+      path_style: true
     }
     # CloudFront設定
     config.asset_host = 'https://image.ehon-to.net'
