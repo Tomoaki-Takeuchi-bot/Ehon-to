@@ -44,3 +44,4 @@
 - 2020.10.13
   v1.9.0(dockerfile revision)
   v1.10.0 (dockerfile revison webpacker compile)
+  v1.10.1 (bundle exec add)
