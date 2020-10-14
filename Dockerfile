@@ -40,6 +40,9 @@ RUN bundle install
 # yarn install
 RUN yarn install
 
+# Webpacker compile
+CMD RAILS_ENV=production rails webpacker:compile
+
 # DB set
 CMD RAILS_ENV=production rails db:migrate && \
     rails db:seed && \
