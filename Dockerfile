@@ -40,10 +40,9 @@ RUN bundle install
 # yarn install
 RUN yarn install
 
-# Webpacker compile
-CMD RAILS_ENV=production bundle exec rails webpacker:compile
-
-# DB set
-CMD RAILS_ENV=production bundle exec rails db:migrate && \
+# Webpacker compile and migrate DB
+CMD RAILS_ENV=production bundle exec rails webpacker:compile && \
+    RAILS_ENV=production DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:reset && \
+    RAILS_ENV=production bundle exec rails db:migrate && \
     RAILS_ENV=production bundle exec rails db:seed && \
     bundle exec rails s -p '3000' -b '0.0.0.0' -e production
