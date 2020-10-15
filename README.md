@@ -46,3 +46,6 @@
   v1.10.0 (dockerfile revison webpacker compile)
   v1.10.1 (bundle exec add)
   v1.10.2 (RAILS_ENV add)
+
+- 2020.10.16
+  v1.11.0 (dockerfile revision webpack,migrate,seed)
