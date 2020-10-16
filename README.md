@@ -49,3 +49,4 @@
 
 - 2020.10.16
   v1.11.0 (dockerfile revision webpack,migrate,seed)
+  v1.11.1(dockerfile rm seed cmd)
