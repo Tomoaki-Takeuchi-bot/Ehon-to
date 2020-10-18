@@ -50,3 +50,6 @@
 - 2020.10.16
   v1.11.0 (dockerfile revision webpack,migrate,seed)
   v1.11.1(dockerfile rm seed cmd)
+
+- 2020.10.18
+  v1.12.0(public_file_server-set)
