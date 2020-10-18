@@ -21,9 +21,11 @@ Rails.application.configure do
   # credential: devise使用の為、再設定
   config.require_master_key = true
 
+  # -----コメント追記-----
+  # EKSアクセスエラーの為、設定変更
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = true
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
