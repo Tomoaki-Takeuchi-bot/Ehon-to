@@ -17,7 +17,7 @@
       <% if resource.image? %>
       <%= image_tag resource.image.thumb.url, id: 'image_present', class: 'avator mt-3' %>
       <% else %>
-      <%= image_pack_tag 'no_avatar.jpg', id: 'image_present', class: 'avator mt-3' %>
+      <%= image_tag 'https://image.ehon-to.net/default/no_avatar.jpg', id: 'image_present', class: 'avator mt-3' %>
       <%= f.hidden_field :image_cache %>
       <% end %>
       <img class="d-none avator" id="image_prev" src="#">
