@@ -1,3 +1,45 @@
+# WIP ＊開発調整中です。
+
+# Ehon-to
+
+小さなお子様の読書習慣における、読んだ本の履歴を管理できるアプリです。
+読んだ本を忘れないように、また子供がどんな感想をもったのか記録できます。
+他のユーザーの方が読んだ本、カテゴリ毎の絵本の検索もできます。
+
+## アプリ開発背景
+
+自分が子供の成長を考えた時、多くの絵本を読み聞かせしてあげたいと思いました。
+しかし、考えていた以上に子供が本と触れ合う場所は多くありました。
+幼稚園・図書館での読み聞かせ・友達と家に遊びに行った際・母親が読んだ本 等
+自分が知らない場所で多くの本と触れ合っている事に気付きました。
+本の評価サイトは多くありますが、幼少期の読書履歴管理とコミュニティ間の情報共有ツールが少ないと考え
+子供の読書管理と幼少期のコミュニティ間での絵本情報の共有で使用してもらう事を想定して作成しました。
+
+## URL
+
+## 使用技術
+
+- AWS
+  - EKS ( node2, nodes-min2, nodes-max5, cluster-version:1.17.9 )
+  - CDN ( CloudFront:S3 による画像配信に使用 )
+  - CloudFormation ( EKS 等リソース管理 )
+  - RDS ( PostgreSQL )
+  - IAM, VPC, ELB, EC2, ECR, Route53, ACM,
+  - Secrets Manager ( RDS 設定 )
+  - SystemManager ( セッションマネージャー )
+- Ruby : v2.6.6
+- Ruby on Rails : v6.0.3.3
+- RSpec, Capybara, Chrome ( 単体テスト、システムテスト )
+- Puma ( Web サーバー )
+- GitHub Actions ( CI:Linter, Security, CD:Build to ECR )
+- Docker : v19.03.13
+- Docker-compose : v1.27.4
+- shell script ( Docker-compose bash )
+
+## AWS 構成図
+
+![Web App (PF) Architecture (3)](https://user-images.githubusercontent.com/61924934/96524882-6aca7b00-12b4-11eb-8c09-1b4b82ff188d.png)
+
 ## project
 
 - 2020.9.19
@@ -53,3 +95,6 @@
 
 - 2020.10.18
   v1.12.0(public_file_server-set)
+
+- 2020.10.19
+  v2.0.0(:tada: deployment)
