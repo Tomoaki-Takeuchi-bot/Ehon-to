@@ -118,5 +118,5 @@
 - 2020.10.18
   v1.12.0(public_file_server-set)
 
-- 2020.10.19
+- 2020.10.20
   v2.0.0(:tada: deployment)
