@@ -1,4 +1,4 @@
-# WIP ＊開発調整中です。
+# WIP ＊調整作業実施中です。
 
 # Ehon-to
 
@@ -38,7 +38,29 @@
 
 ## AWS 構成図
 
-![Web App (PF) Architecture (3)](https://user-images.githubusercontent.com/61924934/96524882-6aca7b00-12b4-11eb-8c09-1b4b82ff188d.png)
+![Web App (PF) Architecture (6)](https://user-images.githubusercontent.com/61924934/96552430-b6017f80-12ee-11eb-9cd4-44efa6f63b00.png)
+
+## ER 図
+
+<img width="598" alt="スクリーンショット 2020-10-20 16 19 29" src="https://user-images.githubusercontent.com/61924934/96553563-4ab8ad00-12f0-11eb-84d1-863055369a37.png">
+
+## アプリ機能一覧
+
+- ユーザー機能
+  - 新規登録・ログイン・ログアウト
+  - パスワードリセット機能
+  - マイページ編集機能
+- 本の管理
+  - 本の情報登録・本の画像・作者・価格・分類コード登録
+- コメント機能
+  - 読後感想簡易コメント機能
+- タグ機能
+  - 投稿者による本のタグ機能
+- 検索機能
+  - 本名・タグ・キーワード検索
+- フォロー機能
+  - フォロー、フォローワー表示
+- ページネーション機能
 
 ## project
 
