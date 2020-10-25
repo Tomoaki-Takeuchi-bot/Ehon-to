@@ -22,4 +22,4 @@ end
 
 # 日本語ファイル名の設定
 # @see https://github.com/carrierwaveuploader/carrierwave#filenames-and-unicode-chars
-CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:].\-+]/

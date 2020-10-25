@@ -4,7 +4,7 @@ module ApplicationHelper
   # ページタイトルの設定
   def full_title(page_title = '')
     base_title = WEBSITE_NAME
-    page_title.empty? ? base_title : page_title + ' | ' + base_title
+    page_title.empty? ? base_title : " #{page_title}  |  #{base_title}"
   end
 
   def alert_name(key)
@@ -20,7 +20,7 @@ module ApplicationHelper
   def avator_tag(resource)
     img_tag(
       resource,
-      image: 'http://image.ehon-to.net/default/no_avatar.jpg', class: 'avator'
+      image: 'https://image.ehon-to.net/default/no_avatar.jpg', class: 'avator'
     )
   end
 
@@ -29,7 +29,7 @@ module ApplicationHelper
       image_tag(resource.image.thumb.url, class: opts[:class])
     else
       image_tag(
-        opts[:image] || 'http://image.ehon-to.net/default/no_image.png',
+        opts[:image] || 'https://image.ehon-to.net/default/no_image.png',
         class: opts[:class]
       )
     end
