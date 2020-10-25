@@ -212,3 +212,9 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  views:
+    pagination:
+      first: "先頭"
+      last: "末尾"
+      previous: "前"
+      next: "次"
