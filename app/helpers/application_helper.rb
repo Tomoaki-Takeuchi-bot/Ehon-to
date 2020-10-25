@@ -20,7 +20,7 @@ module ApplicationHelper
   def avator_tag(resource)
     img_tag(
       resource,
-      image: 'http://image.ehon-to.net/default/no_avatar.jpg', class: 'avator'
+      image: 'https://image.ehon-to.net/default/no_avatar.jpg', class: 'avator'
     )
   end
 
@@ -29,7 +29,7 @@ module ApplicationHelper
       image_tag(resource.image.thumb.url, class: opts[:class])
     else
       image_tag(
-        opts[:image] || 'http://image.ehon-to.net/default/no_image.png',
+        opts[:image] || 'https://image.ehon-to.net/default/no_image.png',
         class: opts[:class]
       )
     end

@@ -22,7 +22,7 @@
       <% if book.image? %>
       <%= image_tag book.image.thumb.url, id: 'image_present', class:"img-fluid" %>
       <% else %>
-      <%= image_pack_tag 'no_image.png', id: 'image_present', class:"img-fluid" %>
+      <%= image_tag 'https://image.ehon-to.net/default/no_image.png', id: 'image_present', class:"img-fluid" %>
       <%= f.hidden_field :image_cache %>
       <% end %>
       <img class="d-none" id="image_prev" src="#" width="150" height="150">
