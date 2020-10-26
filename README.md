@@ -123,3 +123,6 @@
 
 - 2020.10.20
   v2.0.0(:tada: deployment)
+
+- 2020.10.20 - 26
+  develop-2 (revision develop v2)
