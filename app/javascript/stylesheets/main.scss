@@ -3,6 +3,11 @@ body {
   font-family: 'Kosugi Maru', sans-serif;
 }
 
+// ナビゲーションバーホバー時のアンダーライン表示
+nav ul li:hover {
+  text-decoration: underline;
+}
+
 // リンクデフォルト設定変更
 // カラーデフォルト青の為
 a.heart {
