@@ -2,9 +2,11 @@
 
 # Ehon-to
 
-小さなお子様の読書習慣における、読んだ本の履歴を管理できるアプリです。
-読んだ本を忘れないように、また子供がどんな感想をもったのか記録できます。
+小さなお子様の読書習慣における、読んだ本の履歴を管理できるアプリです。<br>
+読んだ本を忘れないように、また子供がどんな感想をもったのか記録できます。<br>
 他のユーザーの方が読んだ本、カテゴリ毎の絵本の検索もできます。
+
+## URL
 
 ## アプリイメージ
 
@@ -24,7 +26,13 @@
 2021年3月まで更新作業を行った後にアプリコード引き渡しと運用をどなたかに委託する予定にて
 活動を行っております。
 
-## URL
+## AWS 構成図
+
+![Web App (PF) Architecture (6)](https://user-images.githubusercontent.com/61924934/96552430-b6017f80-12ee-11eb-9cd4-44efa6f63b00.png)
+
+## ER 図
+
+<img width="598" alt="スクリーンショット 2020-10-20 16 19 29" src="https://user-images.githubusercontent.com/61924934/96553563-4ab8ad00-12f0-11eb-84d1-863055369a37.png">
 
 ## 使用技術
 
@@ -44,14 +52,6 @@
 - Docker : v19.03.13
 - Docker-compose : v1.27.4
 - shell script ( Docker-compose bash )
-
-## AWS 構成図
-
-![Web App (PF) Architecture (6)](https://user-images.githubusercontent.com/61924934/96552430-b6017f80-12ee-11eb-9cd4-44efa6f63b00.png)
-
-## ER 図
-
-<img width="598" alt="スクリーンショット 2020-10-20 16 19 29" src="https://user-images.githubusercontent.com/61924934/96553563-4ab8ad00-12f0-11eb-84d1-863055369a37.png">
 
 ## アプリ機能一覧
 
