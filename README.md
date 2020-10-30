@@ -12,20 +12,6 @@
 
 ![Ehon-to](https://user-images.githubusercontent.com/61924934/97651619-f657bf00-1a9f-11eb-996c-39c7f736716b.gif)
 
-## アプリ開発背景
-
-自分が子供の成長を考えた時、多くの絵本を読み聞かせしてあげたいと思いました。
-しかし、考えていた以上に子供が本と触れ合う場所は多くありました。
-幼稚園・図書館での読み聞かせ・友達と家に遊びに行った際・母親が読んだ本 等
-自分が知らない場所で多くの本と触れ合っている事に気付きました。
-本の評価サイトは多くありますが、幼少期の読書履歴管理とコミュニティ間の情報共有ツールが少ないと考え
-子供の読書管理と幼少期のコミュニティ間での絵本情報の共有で使用してもらう事を想定して作成しました。
-
-【追記】
-本アプリは幼稚園父母のアプリ使用感を元に都度フィードバックを元に更新を行っております。
-2021年3月まで更新作業を行った後にアプリコード引き渡しと運用をどなたかに委託する予定にて
-活動を行っております。
-
 ## AWS 構成図
 
 ![Web App (PF) Architecture (6)](https://user-images.githubusercontent.com/61924934/96552430-b6017f80-12ee-11eb-9cd4-44efa6f63b00.png)
@@ -34,24 +20,19 @@
 
 <img width="598" alt="スクリーンショット 2020-10-20 16 19 29" src="https://user-images.githubusercontent.com/61924934/96553563-4ab8ad00-12f0-11eb-84d1-863055369a37.png">
 
-## 使用技術
+## アプリ開発背景
 
-- AWS
-  - EKS ( node2, nodes-min2, nodes-max5, cluster-version:1.17.9 )
-  - CDN ( CloudFront:S3 による画像配信に使用 )
-  - CloudFormation ( EKS 等リソース管理 )
-  - RDS ( PostgreSQL )
-  - IAM, VPC, ELB, EC2, ECR, Route53, ACM,
-  - Secrets Manager ( RDS 設定 )
-  - SystemManager ( セッションマネージャー )
-- Ruby : v2.6.6
-- Ruby on Rails : v6.0.3.3
-- RSpec, Capybara, Chrome ( 単体テスト、システムテスト )
-- Puma ( Web サーバー )
-- GitHub Actions ( CI:Linter, Security, CD:Build to ECR )
-- Docker : v19.03.13
-- Docker-compose : v1.27.4
-- shell script ( Docker-compose bash )
+自分が子供の成長を考えた時、多くの絵本を読み聞かせしてあげたいと思いました。<br>
+しかし、考えていた以上に子供が本と触れ合う場所は多くありました。<br>
+幼稚園・図書館での読み聞かせ・友達と家に遊びに行った際・母親が読んだ本 等<br>
+自分が知らない場所で多くの本と触れ合っている事に気付きました。<br>
+本の評価サイトは多くありますが、幼少期の読書履歴管理とコミュニティ間の情報共有ツールが少ないと考え<br>
+子供の読書管理と幼少期のコミュニティ間での絵本情報の共有で使用してもらう事を想定して作成しました。<br><br>
+
+【追記】<br>
+本アプリは幼稚園父母のアプリ使用感を元に都度フィードバックを元に更新を行っております。<br>
+2021年3月まで更新作業を行った後にアプリコード引き渡しと運用をどなたかに委託する予定にて<br>
+活動を行っております。
 
 ## アプリ機能一覧
 
@@ -74,7 +55,26 @@
   - XSS, SQL インジェクション, Dos 攻撃 (Brakeman 使用)
   - Gem 脆弱性検知(bundler-audit 使用)
 
-## project
+## 使用技術
+
+- AWS
+  - EKS ( node2, nodes-min2, nodes-max5, cluster-version:1.17.9 )
+  - CDN ( CloudFront:S3 による画像配信に使用 )
+  - CloudFormation ( EKS 等リソース管理 )
+  - RDS ( PostgreSQL )
+  - IAM, VPC, ELB, EC2, ECR, Route53, ACM,
+  - Secrets Manager ( RDS 設定 )
+  - SystemManager ( セッションマネージャー )
+- Ruby : v2.6.6
+- Ruby on Rails : v6.0.3.3
+- RSpec, Capybara, Chrome ( 単体テスト、システムテスト )
+- Puma ( Web サーバー )
+- GitHub Actions ( CI:Linter, Security, CD:Build to ECR )
+- Docker : v19.03.13
+- Docker-compose : v1.27.4
+- shell script ( Docker-compose bash )
+
+## project version log
 
 - 2020.9.19
   v1.0.0
@@ -133,5 +133,5 @@
 - 2020.10.20
   v2.0.0(:tada: deployment)
 
-- 2020.10.20 - 26
+- 2020.10.20 - 30
   develop-2 (revision develop v2)
