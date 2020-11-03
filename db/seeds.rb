@@ -1,5 +1,14 @@
 Faker::Config.locale = :ja
 
+User.create!(
+  remote_image_url: "https://image.ehon-to.net/DB/fixutures/admin/admin.png",
+  name: "Admin User",
+  email: "admin@example.com",
+  password: "admin12345",
+  password_confirmation: "admin12345",
+  admin: true
+)
+
 1.upto(20) do |i|
   name = Faker::Name.name
   remote_image_url =
