@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    if current_user.id == @book.comments.find(params[:id]).user_id
+    if current_user.id == @book.comments.find(params[:id]).user_id || current_user.admin?
       @book.comments.destroy(params[:id])
     end
     render :remote_js
