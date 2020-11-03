@@ -1,13 +1,22 @@
 Faker::Config.locale = :ja
 
-User.create!(
-  remote_image_url: "https://image.ehon-to.net/DB/fixutures/admin/admin.png",
-  name: "Admin User",
-  email: "admin@example.com",
-  password: "admin12345",
-  password_confirmation: "admin12345",
-  admin: true
-)
+  # Admin権限（最大３名権限）
+  # 初期パスワードは共通の為、変更を促す事
+  1.upto(3) do |i|
+    remote_image_url =
+      "https://image.ehon-to.net/DB/fixutures/admin/admin-#{i}.png"
+    name = "Admin User-#{i}"
+    email = "admin-#{i}@example.com"
+    admin_password = Rails.application.credentials.admin[:password].to_s
+    User.create!(
+      remote_image_url: remote_image_url,
+      name: name,
+      email: email,
+      password: admin_password,
+      password_confirmation: admin_password,
+      admin: true
+    )
+  end
 
 1.upto(20) do |i|
   name = Faker::Name.name
