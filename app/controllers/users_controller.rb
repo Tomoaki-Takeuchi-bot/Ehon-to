@@ -18,4 +18,11 @@ class UsersController < ApplicationController
     end
     render :follow
   end
+
+  def user_delete
+    user = User.find(params[:user_id]).destroy
+    if user.destroy
+      redirect_to root_url, notice: "ユーザー抹消しました。"
+    end
+  end
 end
