@@ -15,8 +15,18 @@
 
   <% @users.each do |user| %>
   <div class="col-sm-4 my-3">
+    <% if current_user.admin? %>
     <%= avator_tag(user) %>
     <%= link_to user.name, user, class: 'h2' %>
+    <%= link_to "退会させる", user_user_delete_path(user.id),
+        data: {confirm: "本当に？"},
+        method: :delete,
+        class: 'btn btn-danger btn-block my-2' %>
+    <hr />
+    <% else %>
+    <%= avator_tag(user) %>
+    <%= link_to user.name, user, class: 'h2' %>
+    <% end %>
   </div>
   <% end %>
 
