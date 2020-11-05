@@ -26,10 +26,17 @@ FactoryBot.define do
     password { 'password' }
   end
 
-  trait :admin do
-    name { 'AdminUser' }
-    email { 'admin@example.com' }
+  factory :admin do
+    association :user
+    sequence(:name) { |i| "AdminUser#{i}" }
+    sequence(:email) { |i| "admin#{i}@example.com" }
     password { 'admin12345' }
     admin { true }
+
+    trait :user_with_admin do
+      after(:create) do | admin |
+        { create(:admin, admin: admin) }
+      end
+    end
   end
 end
