@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def user_delete
+    raise "管理者限定機能です" unless current_user.admin
     user = User.find(params[:user_id]).destroy
     redirect_to root_url, notice: 'ユーザー抹消しました。' if user.destroy
   end
