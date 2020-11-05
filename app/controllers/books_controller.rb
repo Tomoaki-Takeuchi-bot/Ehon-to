@@ -91,6 +91,6 @@ class BooksController < ApplicationController
   end
 
   def check_role
-    redirect_to books_url unless @book.user_id == current_user.id || current_user.admin?
+    redirect_to books_url unless @book.user_id == current_user.id || current_user.admin
   end
 end
