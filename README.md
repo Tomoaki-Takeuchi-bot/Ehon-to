@@ -136,3 +136,7 @@
 - 2020.10.20-30
   v2.1.1(develop2 try1)
   v2.1.2(try2)
+
+- 2020.10.31-11.6
+  v2.2.0(admin function set &
+         rm forgetpassword reset )
