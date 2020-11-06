@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
+  let(:login_user) { create(:user) }
   before do
     timestamp!
-    log_in
+    log_in(login_user)
   end
 
   describe 'GET /users' do
@@ -22,7 +23,7 @@ RSpec.describe 'Users', type: :request do
       it 'render to index page specify name' do
         get users_path(q: { name_cont: timestamp })
         expect(response.status).to eq(200)
-        expect(response.body).not_to include(current_user.name)
+        expect(response.body).to include(current_user.name)
         expect(response.body).to include("User1#{timestamp}")
         expect(response.body).to include("User2#{timestamp}")
       end
@@ -60,5 +61,28 @@ RSpec.describe 'Users', type: :request do
         expect(current_user.following?(other_user)).to eq(false)
       end
     end
+  end
+
+  describe 'admin' do
+    describe 'DELETE /users/:user_id/user_delete' do
+      let(:other_user) { create(:user) }
+
+      context "when admin" do
+        let(:login_user) { create(:user, :admin) }
+        it 'delete user' do
+          delete user_user_delete_path(other_user)
+          expect(response).to redirect_to(root_path)
+          follow_redirect!
+          expect(response.body).to include('ユーザー抹消しました。')
+        end
+      end
+
+      context "when not admin" do
+        it 'raise error' do
+          expect { delete user_user_delete_path(other_user) }.to raise_error("管理者限定機能です")
+        end
+      end
+    end
+
   end
 end
