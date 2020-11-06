@@ -1,4 +1,9 @@
 <hr class="border-dark my-5">
+<div>
+  <font color="Tomato">＊　おことわり　パスワードをお忘れの方へ　＊</font><br><br>
+  大変お手数ですが、サイト管理者にパスワードを忘れた旨<br>
+  現状アカウントの削除申請の上、再度登録をお願いします。<br><br>
+</div>
 <div class="form-group">
   <%- if controller_name != 'sessions' %>
   <%= link_to "アカウントをお持ちの方", new_session_path(resource_name), class: 'btn btn-info btn-block' %><br />
@@ -8,9 +13,11 @@
   <%= link_to "アカウントをお持ちでない方", new_registration_path(resource_name), class: 'btn btn-info btn-block' %><br />
   <% end %>
 
+  <!-- recoverableの除外
   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <%= link_to "パスワードの再設定", new_password_path(resource_name), class: 'btn btn-secondary btn-block' %><br />
   <% end %>
+-->
 
   <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
   <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />

@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
+  let(:login_user) { create(:user) }
   before do
     timestamp!
-    log_in
+    log_in(login_user)
   end
 
   describe 'GET /users' do
@@ -58,6 +59,29 @@ RSpec.describe 'Users', type: :request do
           Relationship.count
         }.by(-1)
         expect(current_user.following?(other_user)).to eq(false)
+      end
+    end
+  end
+
+  # Admin User
+  describe 'admin' do
+    describe 'DELETE /users/:user_id/user_delete' do
+      let(:other_user) { create(:user) }
+
+      context 'when admin' do
+        let(:login_user) { create(:user, :admin) }
+        it 'delete user' do
+          delete user_user_delete_path(other_user)
+          expect(response).to redirect_to(root_path)
+          follow_redirect!
+          expect(response.body).to include('ユーザー抹消しました。')
+        end
+      end
+
+      context 'when not admin' do
+        it 'raise error' do
+          expect { delete user_user_delete_path(other_user) }.to raise_error('管理者限定機能です')
+        end
       end
     end
   end

@@ -2,6 +2,9 @@
 #
 #                                Prefix Verb   URI Pattern                                                                              Controller#Action
 #                                  root GET    /                                                                                        home#index
+#                         book_comments POST   /books/:book_id/comments(.:format)                                                       comments#create
+#                          book_comment DELETE /books/:book_id/comments/:id(.:format)                                                   comments#destroy
+#                         book_favorite POST   /books/:book_id/favorite(.:format)                                                       books#favorite
 #                                 books GET    /books(.:format)                                                                         books#index
 #                                       POST   /books(.:format)                                                                         books#create
 #                              new_book GET    /books/new(.:format)                                                                     books#new
@@ -10,14 +13,6 @@
 #                                       PATCH  /books/:id(.:format)                                                                     books#update
 #                                       PUT    /books/:id(.:format)                                                                     books#update
 #                                       DELETE /books/:id(.:format)                                                                     books#destroy
-#                              comments GET    /comments(.:format)                                                                      comments#index
-#                                       POST   /comments(.:format)                                                                      comments#create
-#                           new_comment GET    /comments/new(.:format)                                                                  comments#new
-#                          edit_comment GET    /comments/:id/edit(.:format)                                                             comments#edit
-#                               comment GET    /comments/:id(.:format)                                                                  comments#show
-#                                       PATCH  /comments/:id(.:format)                                                                  comments#update
-#                                       PUT    /comments/:id(.:format)                                                                  comments#update
-#                                       DELETE /comments/:id(.:format)                                                                  comments#destroy
 #                      new_user_session GET    /users/sign_in(.:format)                                                                 users/sessions#new
 #                          user_session POST   /users/sign_in(.:format)                                                                 users/sessions#create
 #                  destroy_user_session DELETE /users/sign_out(.:format)                                                                users/sessions#destroy
@@ -33,6 +28,9 @@
 #                                       PUT    /users(.:format)                                                                         users/registrations#update
 #                                       DELETE /users(.:format)                                                                         users/registrations#destroy
 #                                       POST   /users(.:format)                                                                         users/registrations#create
+#                           user_follow POST   /users/:user_id/follow(.:format)                                                         users#follow
+#                                 users GET    /users(.:format)                                                                         users#index
+#                                  user GET    /users/:id(.:format)                                                                     users#show
 #         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
 #            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
 #         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
@@ -70,5 +68,6 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[index show] do
     post :follow
+    delete :user_delete
   end
 end

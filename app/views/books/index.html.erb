@@ -60,7 +60,7 @@
             <li>作成：<%= book.created_at.to_s(:datetime_jp) %></li>
             <li>更新：<%= book.updated_at.to_s(:datetime_jp) %></li>
           </ul>
-          <% if user_signed_in? && current_user == book.user %>
+          <% if user_signed_in? && current_user == book.user || current_user.admin %>
           <%= link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3' %>
           <%= link_to '削除', book, method: :delete, data: { confirm: "本「#{book.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger' %>
           <% end %>

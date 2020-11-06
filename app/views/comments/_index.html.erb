@@ -12,7 +12,7 @@
       <%= avator_tag(comment.user) %>
       <strong><%= comment.user.name %></strong>
       <small><%= comment.created_at.strftime("%Y/%m/%d") %></small>
-      <% if comment.user == current_user %>
+      <% if comment.user == current_user || current_user.admin %>
       <%= link_to "削除", book_comment_path(@book, comment),
                           class:'btn btn-sm btn-outline-danger ml-5',
                           method: :delete,

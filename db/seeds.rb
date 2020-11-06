@@ -1,5 +1,22 @@
 Faker::Config.locale = :ja
 
+# Admin 権限
+1.upto(1) do
+  remote_image_url =
+    'https://image.ehon-to.net/DB/fixutures/admin/admin.png'
+  name = 'Admin User'
+  admin_email = Rails.application.credentials.admin[:email].to_s
+  admin_password = Rails.application.credentials.admin[:password].to_s
+  User.create!(
+    remote_image_url: remote_image_url,
+    name: name,
+    email: admin_email,
+    password: admin_password,
+    password_confirmation: admin_password,
+    admin: true
+  )
+end
+
 1.upto(20) do |i|
   name = Faker::Name.name
   remote_image_url =
