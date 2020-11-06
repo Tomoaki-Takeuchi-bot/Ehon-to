@@ -142,3 +142,6 @@
          rm forgetpassword reset )
   v2.2.1(webpacker error image folder)
   v2.2.2(images folder set)
+
+- 2020.11.6
+  v3.0.0(:tada: deployment version3)
