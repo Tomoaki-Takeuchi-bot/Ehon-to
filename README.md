@@ -140,3 +140,4 @@
 - 2020.10.31-11.6
   v2.2.0(admin function set &
          rm forgetpassword reset )
+  v2.2.1(webpacker error image folder)
