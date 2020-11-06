@@ -12,11 +12,6 @@ module SpecSupport
     @current_user
   end
 
-  # Admin_user
-  def admin_user
-    @admin_user
-  end
-
   def log_in(user = create(:user), type: :request)
     @current_user = user
 
@@ -31,23 +26,8 @@ module SpecSupport
     end
   end
 
-  # Admin log_in
-  def log_in_admin(admin = create(:admin), type: :request)
-    @admin_user = admin
-
-    case type
-    when :request
-      sign_in(admin)
-    end
-  end
-
   def log_out
     sign_out(current_user)
-  end
-
-  # Admin log_out
-  def log_out_admin
-    sign_out(admin_user)
   end
 
   def json_response
