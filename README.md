@@ -145,3 +145,6 @@
 
 - 2020.11.6
   v3.0.0(:tada: deployment version3)
+
+- 2020.11.7
+  v3.1.0 (start search new function plan )
