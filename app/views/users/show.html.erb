@@ -17,11 +17,11 @@
   </div>
 
   <div class="col sm-4 mt-3">
-    <% if !current_user.admin %>
-    <h3><strong>メール</strong> : <font color="red">SECRET</font>
-    </h3>
-    <% else %>
+    <% if current_user.admin || !@user.admin %>
     <h3><strong>メール</strong> : <%= @user.email %></h3>
+    <% else %>
+    <h3><strong>メール</strong> : <font color=RED>SECRET</font>
+    </h3>
     <% end %>
   </div>
   <hr />
