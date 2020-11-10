@@ -52,7 +52,7 @@
     <div class="col-sm-4 mb-2">
       <div class="card">
         <div class="card-img-top, text-center">
-          <%= img_tag(book)%>
+          <%= link_to img_tag(book), book %>
         </div>
         <div class="card-body">
           <h5 class="card-title"><%= link_to book.name, book %></h5>
