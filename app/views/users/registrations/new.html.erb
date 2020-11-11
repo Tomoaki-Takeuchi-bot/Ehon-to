@@ -17,6 +17,9 @@
 
   <div class="form-group">
     <%= f.label :email %><br />
+    <em>
+      <font color="Tomato">メール公開希望しない方は、<br>"○○○○@example.com"(○は任意）で登録・ご記憶下さい。</font>
+    </em>
     <%= f.email_field :email,autofocus: true,
                         autocomplete: "email",
                         class: 'form-control',
