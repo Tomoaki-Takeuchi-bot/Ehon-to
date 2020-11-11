@@ -36,11 +36,41 @@
   <% end %><br />
   <% end %>
 
-  <% else %>
+  <!-- User希望にて 自分が投稿した本一覧の表示追加  -->
   <div class="container text-center">
     <h4>
       <span class="badge badge-light">
         <%= "#{@user.name}さんが投稿した本の一覧" %>
+      </span>
+    </h4>
+  </div>
+  <div class="container">
+    <table class="table table-hover mt-3 mb-3">
+      <thead class="thead-default">
+        <tr>
+          <th>書籍名</th>
+          <th>タグ</th>
+      </thead>
+      <tbody>
+        <% @user.books.includes(:taggings).each do |book| %>
+        <tr>
+          <td><%= link_to book.name, book %></td>
+          <td>
+            <% book.tag_list.each do |tag| %>
+            <span class="badge badge-info my-2 mr-1 p-2"><%= tag %></span>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% else %>
+  <div class="container text-center">
+    <h4>
+      <span class="badge badge-light">
+        <%= "#{current_user.name}さんが登録した本の一覧" %>
       </span>
     </h4>
   </div>
