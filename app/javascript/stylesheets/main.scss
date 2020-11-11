@@ -3,6 +3,22 @@ body {
   font-family: 'Kosugi Maru', sans-serif;
 }
 
+// Top indexページのtopic説明
+#topics {
+  color: #e91e63;
+}
+
+.topic1 {
+  background-color: aquamarine;
+}
+
+.topic2 {
+  background-color: blue;
+}
+
+.topic3 {
+  background-color: blueviolet;
+}
 // ナビゲーションバーホバー時のアンダーライン表示
 nav ul li:hover {
   text-decoration: underline;
