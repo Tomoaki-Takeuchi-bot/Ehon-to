@@ -5,12 +5,24 @@
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-8 mb-3">
+          </h5>
+          </hr>
+          <div>
+            <% if user_signed_in? %>
+            <%= link_to "本の一覧", books_path, class: "btn btn-primary" %></h3>
+            <% else %>
+            <%= link_to "未登録の方（新規登録）", new_user_registration_path, class: "btn btn-info mt-1 mb-3" %></h4>
+            <%= link_to "登録済みの方（ログイン）", new_user_session_path, class: "btn btn-primary mt-1 mb-3" %></h4>
+            <% end %>
+            <hr width=450 size=5 align="left">
+          </div>
           <h3 class="mb-3">
             <font color="#E7A83E">Ehon-to　</font>について
           </h3>
-          <h5>幼児向けの "読書管理アプリ" です。<br>
-            本アプリは下記の機能を備えています。<br>
-            <br>
+          <h5>幼児向けの "読書管理アプリ" です。<br></h5>
+          <h5> 本アプリは下記の機能を備えています。<br></h5>
+          <br>
+          <h5>
             <div id="topics">
               ①：本を記録・管理する <span>（Record）</span>
               <div class="topic1">
@@ -28,12 +40,6 @@
             <br>
             このアプリは幼児の本を通じた子供の成長を応援します。
           </h5>
-          <% if user_signed_in? %>
-          <%= link_to "本の一覧", books_path, class: "btn btn-primary" %></h3>
-          <% else %>
-          <%= link_to "未登録の方（新規登録）", new_user_registration_path, class: "btn btn-info mt-3" %></h4>
-          <%= link_to "登録済みの方（ログイン）", new_user_session_path, class: "btn btn-primary mt-3" %></h4>
-          <% end %>
         </div>
         <div class="col-md-4">
           <%= image_tag "https://image.ehon-to.net/Home/top1.png", size: "300x300" %>
