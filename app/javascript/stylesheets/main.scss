@@ -3,6 +3,61 @@ body {
   font-family: 'Kosugi Maru', sans-serif;
 }
 
+// Top indexページ
+#topics {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  h5 {
+    color: #708090;
+  }
+
+  .topic1 {
+    margin-top: 30px;
+    cursor: grab;
+    padding-left: 20px;
+    width: 257px;
+    margin-bottom: 3rem;
+    transition-property: transform;
+    transition-duration: 2s;
+  }
+
+  .topic2 {
+    margin-top: 30px;
+    cursor: grab;
+    padding-left: 20px;
+    width: 257px;
+    margin-bottom: 3rem;
+    transition-property: transform;
+    transition-duration: 5s;
+  }
+
+  .topic3 {
+    margin-top: 30px;
+    cursor: grab;
+    padding-left: 30px;
+    background-color:cornflowerblue;
+    width: 290px;
+    margin-bottom: 2rem;
+    transition-property: transform;
+    transition-duration: 2s;
+  }
+
+  p {
+    margin-bottom: 2rem;
+  }
+
+  .topic1:hover {
+    transform: translateX(300px);
+  }
+
+  .topic2:hover {
+    transform: translateX(200px) rotate(750deg);
+  }
+
+  .topic3:hover {
+    transform: translateX(500px) scale(2, 1.5);
+  }
+}
+
 // ナビゲーションバーホバー時のアンダーライン表示
 nav ul li:hover {
   text-decoration: underline;
