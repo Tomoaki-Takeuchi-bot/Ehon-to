@@ -14,36 +14,79 @@
             <%= link_to "未登録の方（新規登録）", new_user_registration_path, class: "btn btn-info mt-1 mb-3" %></h4>
             <%= link_to "登録済みの方（ログイン）", new_user_session_path, class: "btn btn-primary mt-1 mb-3" %></h4>
             <% end %>
-            <hr width=450 size=5 align="left">
+            <hr class="border-info my-4">
           </div>
-          <h3 class="mb-3">
+          <h2 class="mb-3">
             <font color="#E7A83E">Ehon-to　</font>について
-          </h3>
-          <h5>幼児向けの "読書管理アプリ" です。<br></h5>
-          <h5> 本アプリは下記の機能を備えています。<br></h5>
+          </h2>
+          <h4>幼児向けの <font color="#E7A83E">"読書管理アプリ"</font>です。<br>幼少期の絵本読み聞かせや本アプリは下記の機能を備えています。<br></h4>
           <br>
-          <h5>
+          <div>
             <div id="topics">
-              ①：本を記録・管理する <span>（Record）</span>
+              <div>
+                <h3>①：本を記録・管理する <font color="Brown">（Record）</font>
+                </h3>
+              </div>
+
+              <div>
+                <br>
+                <h5>&emsp;・読んだ本の登録・編集・カテゴリをつける・削除するの機能があります。</h5>
+                <h5>&emsp;・読んだ本や他の人が登録した本にコメント感想をつける機能があります。</h5>
+              </div>
+
               <div class="topic1">
-                <%= image_tag 'https://image.ehon-to.net/default/no_avatar.jpg' %>
+                <%= image_tag 'https://image.ehon-to.net/default/book.png' %>
               </div>
-              ②：本を探す <span>（Search）</span>
+
+              <div>
+                <h3>②：本を探す <font color="Green">（Search）</font>
+                </h3>
+              </div>
+
+              <div>
+                <br>
+                <h5>&emsp;・本の検索は登録してあるカテゴリータグで検索できます。（全6種類）</h5>
+                <h5>&emsp;・本のキーワード検索をする事ができます。（本名・作者名等）</h5>
+              </div>
+
               <div class="topic2">
-                <%= image_tag 'https://image.ehon-to.net/default/no_avatar.jpg' %>
+                <%= image_tag 'https://image.ehon-to.net/default/loupe.png' %>
               </div>
-              ③：本の情報共有 <span>（Share）</span>
+
+
+              <div>
+                <h3>③：本の情報共有 <font color="Blue">（Share）</font>
+                </h3>
+              </div>
+
+              <div>
+                <br>
+                <h5>&emsp;・登録者本人の本だけではなく、他の人の登録絵本についても確認できます。</h5>
+                <h5>&emsp;・気に入った本があれば "いいね" を押せばマイページでも確認できます。</h5>
+              </div>
+
               <div class="topic3">
-                <%= image_tag 'https://image.ehon-to.net/default/no_avatar.jpg' %>
+                <%= image_tag 'https://image.ehon-to.net/default/share.png' %>
               </div>
             </div>
+
             <br>
-            このアプリは幼児の本を通じた子供の成長を応援します。
-          </h5>
+            <hr class="border-dark my-5">
+
+            <font color="Red">
+              ＊　おことわり　＊<br>
+            </font>
+            このアプリは幼児の本を通じた学習・子供の成長を応援しております。<br>
+            管理ユーザーにより <font color="Tomato">"不適切と考えられる投稿等"</font> があった場合<br>
+            <font color="Tomato"> "ご連絡なしにて削除する場合がある"</font> 事を予めご承知下さい。
+          </div>
+
         </div>
+
         <div class="col-md-4">
           <%= image_tag "https://image.ehon-to.net/Home/top1.png", size: "300x300" %>
         </div>
+
       </div>
     </div>
   </section>
