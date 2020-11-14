@@ -12,30 +12,75 @@
     </div>
   </div>
 
+  <div>
+    <h5>
+      <font color="#7fbfff">フォローしている人数：<%= @user.followings.count %> |
+        フォローされている人数：<%= @user.followers.count %></font>
+    </h5>
+  </div>
+
   <div class="col sm-4 mt-3">
     <h3><strong>名前</strong> : <%= @user.name %></h3>
   </div>
 
   <div class="col sm-4 mt-3">
+    <% if current_user.admin || !@user.admin %>
     <h3><strong>メール</strong> : <%= @user.email %></h3>
+    <% else %>
+    <h3><strong>メール</strong> : <font color=RED>SECRET</font>
+    </h3>
+    <% end %>
   </div>
   <hr />
 </div>
 
 <% if @user.id == current_user.id %>
 <div class="container text-center">
-  <h4><span class="badge badge-light">『好きな本のタグリスト』</span></h4>
-  <% favorites_group_by_tag(current_user.favorite_books).each do |tag, ids| %>
-  <%= link_to books_path(ids: ids) do %>
-  <span class="badge badge-info my-2 mr-1 p-2"><%= tag %></span> <%= "#{ids.size}冊" %>
-  <% end %><br />
-  <% end %>
+  <div clsss="tag-list">
+    <h4><span class="badge badge-light">『好きな本のタグリスト』</span></h4>
+    <% favorites_group_by_tag(current_user.favorite_books).each do |tag, ids| %>
+    <%= link_to books_path(ids: ids) do %>
+    <span class="badge badge-info my-2 mr-1 p-2"><%= tag %></span> <%= "#{ids.size}冊" %>
+    <% end %><br />
+    <% end %>
+    <br>
+    <hr />
+  </div>
+  <!-- User希望にて 自分が投稿した本一覧の表示追加  -->
+  <div class="container text-center">
+    <h4>
+      <span class="badge badge-light">
+        <%= "『#{@user.name}さん』が投稿した本の一覧" %>
+      </span>
+    </h4>
+  </div>
+  <div class="container">
+    <table class="table table-hover mt-3 mb-3">
+      <thead class="thead-default">
+        <tr>
+          <th>書籍名</th>
+          <th>タグ</th>
+      </thead>
+      <tbody>
+        <% @user.books.includes(:taggings).each do |book| %>
+        <tr>
+          <td><%= link_to book.name, book %></td>
+          <td>
+            <% book.tag_list.each do |tag| %>
+            <span class="badge badge-info my-2 mr-1 p-2"><%= tag %></span>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
   <% else %>
   <div class="container text-center">
     <h4>
       <span class="badge badge-light">
-        <%= "#{@user.name}さんが投稿した本の一覧" %>
+        <%= "#{current_user.name}さんが登録した本の一覧" %>
       </span>
     </h4>
   </div>

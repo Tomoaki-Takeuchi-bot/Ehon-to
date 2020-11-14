@@ -4,7 +4,9 @@
 <%= form_with model: book, local: true do |f| %>
 
 <div class="container">
-  *印は入力が必須な個所です。<br>
+  <p>
+    <font color="Tomato">*印は入力が必須な個所です。</font><br>
+  </p>
   <div class="row">
     <div class='col-sm-6 mt-3'>
       <%= f.label :name, "本の名前*" %>

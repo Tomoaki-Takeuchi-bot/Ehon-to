@@ -23,18 +23,22 @@
             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#card-base"
               aria-expanded="true" aria-controls="card-base">
               <h3>本の検索</h3>
-              <h5>＊ここからカテゴリとキーワード検索できます＊</h5>
+              <h5>
+                ＊ここを<%= image_tag 'https://image.ehon-to.net/default/click.png', size: '30x30' %>するとカテゴリタグとキーワード検索できます＊
+              </h5>
             </button>
           </div>
           <div id="card-base" class="collapse" aria-labelledby="books-search" data-parent="#accordion-base">
             <%= search_form_for @q do |f| %>
             <div class="my-2">
+              <%= image_tag 'https://image.ehon-to.net/default/tag.png', size: '50x50' %>
               <%= select_tag :tag_list, options_for_select(Book::TAGS), multiple: true, class: "enable-select2" %>
             </div>
             <div class="my-2">
+              <%= image_tag 'https://image.ehon-to.net/default/loupe.png', size: '30x50' %>
               <%= f.search_field :name_cont, placeholder: "キーワード", class: "py-1" %>
             </div>
-            <%= submit_tag "Search", class: "btn btn-outline-info btn-sm" %>
+            <%= submit_tag "検索", class: "btn btn-outline-info btn-sm" %>
             <% end %>
           </div>
         </div>
@@ -52,7 +56,7 @@
     <div class="col-sm-4 mb-2">
       <div class="card">
         <div class="card-img-top, text-center">
-          <%= img_tag(book)%>
+          <%= link_to img_tag(book), book %>
         </div>
         <div class="card-body">
           <h5 class="card-title"><%= link_to book.name, book %></h5>

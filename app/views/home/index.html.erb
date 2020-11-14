@@ -5,53 +5,89 @@
     <div class="container">
       <div class="row mb-4">
         <div class="col-md-8 mb-3">
-          <h3 class="mb-3">Ehon-toについて</h3>
-          <h5>小さなお子様の読書習慣、読んだ本の履歴を管理できるアプリです。<br>
-            読んだ本を忘れないように、子供がどんな感想をもったのか記録できます。<br>
-            他のユーザーの方が読んだ本、カテゴリ毎の絵本検索もできます。<br>
-            このアプリで絵本を通じた子供の成長を応援します。</h5>
-          <% if user_signed_in? %>
-          <%= link_to "本の一覧", books_path, class: "btn btn-primary" %></h3>
-          <% else %>
-          <%= link_to "未登録の方（新規登録）", new_user_registration_path, class: "btn btn-info mt-3" %></h4>
-          <%= link_to "登録済みの方（ログイン）", new_user_session_path, class: "btn btn-primary mt-3" %></h4>
-          <% end %>
+          </h5>
+          </hr>
+          <div>
+            <% if user_signed_in? %>
+            <%= link_to "本の一覧", books_path, class: "btn btn-primary" %></h3>
+            <% else %>
+            <%= link_to "未登録の方（新規登録）", new_user_registration_path, class: "btn btn-info mt-1 mb-3" %></h4>
+            <%= link_to "登録済みの方（ログイン）", new_user_session_path, class: "btn btn-primary mt-1 mb-3" %></h4>
+            <% end %>
+            <hr class="border-info my-4">
+          </div>
+          <h2 class="mb-3">
+            <font color="#E7A83E">Ehon-to　</font>について
+          </h2>
+          <h4>幼児向けの <font color="#E7A83E">"読書管理アプリ"</font>です。<br>幼少期の絵本読み聞かせや本アプリは下記の機能を備えています。<br></h4>
+          <br>
+          <div>
+            <div id="topics">
+              <div>
+                <h3>①：本を記録・管理する <font color="Blue">（Record）</font>
+                </h3>
+              </div>
+
+              <div>
+                <br>
+                <h5>&emsp;・読んだ本の登録・編集・カテゴリをつける・削除するの機能があります。</h5>
+                <h5>&emsp;・読んだ本や他の人が登録した本にコメント感想をつける機能があります。</h5>
+              </div>
+
+              <div class="topic1">
+                <%= image_tag 'https://image.ehon-to.net/default/book.png' %>
+              </div>
+
+              <div>
+                <h3>②：本を探す <font color="Green">（Search）</font>
+                </h3>
+              </div>
+
+              <div>
+                <br>
+                <h5>&emsp;・本の検索は登録してあるカテゴリータグで検索できます。（全6種類）</h5>
+                <h5>&emsp;・本のキーワード検索をする事ができます。（本名・作者名等）</h5>
+              </div>
+
+              <div class="topic2">
+                <%= image_tag 'https://image.ehon-to.net/default/loupe.png' %>
+              </div>
+
+
+              <div>
+                <h3>③：本の情報共有 <font color="Red">（Share）</font>
+                </h3>
+              </div>
+
+              <div>
+                <br>
+                <h5>&emsp;・登録者本人の本だけではなく、他の人の登録絵本についても確認できます。</h5>
+                <h5>&emsp;・気に入った本があれば "いいね" を押せばマイページでも確認できます。</h5>
+              </div>
+
+              <div class="topic3">
+                <%= image_tag 'https://image.ehon-to.net/default/share.png' %>
+              </div>
+            </div>
+
+            <br>
+            <hr class="border-dark my-5">
+
+            <font color="Red">
+              ＊　おことわり　＊<br>
+            </font>
+            このアプリは幼児の本を通じた学習・子供の成長を応援しております。<br>
+            管理ユーザーにより <font color="Tomato">"不適切と考えられる投稿等"</font> があった場合<br>
+            <font color="Tomato"> "ご連絡なしにて削除する場合がある"</font> 事を予めご承知下さい。
+          </div>
+
         </div>
+
         <div class="col-md-4">
           <%= image_tag "https://image.ehon-to.net/Home/top1.png", size: "300x300" %>
         </div>
+
       </div>
-
-      <div class="row mt-5">
-        <div class="col-md-4">
-          <!-- card1-->
-          <div class="card mb-3">
-            <%= image_tag "https://image.ehon-to.net/Home/top2.png", size:"330x300"%>
-            <div class="card-body d-flex justify-content-between">
-              <h5>読んだ絵本の管理</h5>
-            </div>
-          </div>
-        </div>
-
-        <!--card2-->
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <%= image_tag "https://image.ehon-to.net/Home/top3.png", size:"330x300" %>
-            <div class="card-body d-flex justify-content-between">
-              <h5>読みたい絵本を見つける</h5>
-            </div>
-          </div>
-        </div>
-
-        <!--card2-->
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <%= image_tag "https://image.ehon-to.net/Home/top4.jpg", size:"330x300" %>
-            <div class="card-body d-flex justify-content-between">
-              <h5>みんなで読んだ絵本を共有</h5>
-            </div>
-          </div>
-        </div>
-
+    </div>
   </section>
 </div>
