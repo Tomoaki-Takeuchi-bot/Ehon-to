@@ -148,3 +148,12 @@
 
 - 2020.11.7
   v3.1.0 (start search new function plan )
+
+- 2020.11.15
+  v4.0.0 (:tada: new function add version)
+  - admin mail secret
+  - login-user-books-list
+  - users-index-pagenate-fix
+  - home-index-design-update
+  - users-show-revision
+  - dockerfile continuing data file
