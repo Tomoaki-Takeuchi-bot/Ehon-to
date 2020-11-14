@@ -7,10 +7,11 @@
 他のユーザーの方が読んだ本、カテゴリ毎の絵本の検索もできます。
 
 ## URL
+https://www.ehon-to.net/
 
 ## アプリイメージ
 
-![Ehon-to](https://user-images.githubusercontent.com/61924934/97651619-f657bf00-1a9f-11eb-996c-39c7f736716b.gif)
+![Ehon-to](https://user-images.githubusercontent.com/61924934/99157917-981e1380-2710-11eb-9fd6-f4fce8a9f477.gif)
 
 ## AWS 構成図
 
