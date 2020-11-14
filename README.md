@@ -157,3 +157,7 @@
   - home-index-design-update
   - users-show-revision
   - dockerfile continuing data file
+
+- 2020.11.15
+  v4.1.0
+  - home.index style fix
