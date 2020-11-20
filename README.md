@@ -1,5 +1,3 @@
-# WIP ＊調整作業実施中です。
-
 # Ehon-to
 
 小さなお子様の読書習慣における、読んだ本の履歴を管理できるアプリです。<br>
@@ -162,3 +160,6 @@ https://www.ehon-to.net/
 - 2020.11.15
   v4.1.0
   - home.index style fix
+
+- 2020.11.20
+  remove WIP message
