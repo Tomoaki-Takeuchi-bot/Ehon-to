@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   # 例外ハンドル
-  unless Rails.env.production? # テスト後にdevelopmentに変更
+  unless Rails.env.development? # テスト後にdevelopmentに変更
     rescue_from ActiveRecord::RecordNotFound,     with: :_render_404
     rescue_from ActionController::RoutingError,   with: :_render_404
   end
