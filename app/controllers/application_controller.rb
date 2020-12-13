@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   # 例外ハンドル
-  unless Rails.env.production?
-    rescue_from Exception,                        with: :_render_500
+  unless Rails.env.production? #テスト後にdevelopmentに変更
     rescue_from ActiveRecord::RecordNotFound,     with: :_render_404
     rescue_from ActionController::RoutingError,   with: :_render_404
   end
@@ -32,7 +31,7 @@ class ApplicationController < ActionController::Base
     if request.format.to_sym == :json
       render json: { error: '404 error' }, status: :not_found
     else
-      render 'public/404.html', status: :not_found
+      render 'errors/404.html', status: :not_found
     end
   end
 
@@ -42,7 +41,7 @@ class ApplicationController < ActionController::Base
     if request.format.to_sym == :json
       render json: { error: '500 error' }, status: :internal_server_error
     else
-      render 'public/500.html', status: :internal_server_error
+      render 'errors/500.html', status: :internal_server_error
     end
   end
 
