@@ -1,9 +1,7 @@
 class BooksController < ApplicationController
-
   # ref:before action :https://github.com/heartcombo/devise#controller-filters-and-helpers
   before_action :set_book, only: %i[show edit update destroy]
   before_action :check_role, only: %i[edit update destroy]
-
 
   # 検索ransack使用 ransackメソッド
   # https://github.com/activerecord-hackery/ransack#simple-mode

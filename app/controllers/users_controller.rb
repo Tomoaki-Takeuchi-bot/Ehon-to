@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   # ransackでパラメーター取得
   # https://github.com/activerecord-hackery/ransack#in-your-controller
   def index
@@ -24,7 +23,6 @@ class UsersController < ApplicationController
     render :follow
   end
 
-  #
   def user_delete
     # 管理者限定機能へのアクセス拒否（現行ユーザーがadminでない場合）
     raise '管理者限定機能です' unless current_user.admin
