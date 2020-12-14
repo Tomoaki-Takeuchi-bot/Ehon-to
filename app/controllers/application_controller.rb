@@ -13,8 +13,7 @@ class ApplicationController < ActionController::Base
     books_path
   end
 
-  # 例外ハンドル
-  unless Rails.env.development? # テスト後にdevelopmentに変更
+  unless Rails.env.development?
     rescue_from ActiveRecord::RecordNotFound,     with: :_render_404
     rescue_from ActionController::RoutingError,   with: :_render_404
   end
@@ -35,17 +34,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def _render_500(err = nil)
-    logger.error "Rendering 500 with exception: #{err.message}" if err
 
-    if request.format.to_sym == :json
-      render json: { error: '500 error' }, status: :internal_server_error
-    else
-      render 'errors/500.html', status: :internal_server_error
-    end
-  end
-
-  # protectedで同じクラスやサブクラスの中であれば呼び出し可能にしている
   protected
 
   def configure_permitted_parameters
