@@ -70,4 +70,7 @@ Rails.application.routes.draw do
     post :follow
     delete :user_delete
   end
+
+  get '*not_found' => 'application#routing_error'
+  post '*not_found' => 'application#routing_error'
 end

@@ -1,13 +1,18 @@
 class BooksController < ApplicationController
+  # ref:before action :https://github.com/heartcombo/devise#controller-filters-and-helpers
   before_action :set_book, only: %i[show edit update destroy]
   before_action :check_role, only: %i[edit update destroy]
 
+  # 検索ransack使用 ransackメソッド
+  # https://github.com/activerecord-hackery/ransack#simple-mode
   def index
     @q = Book.ransack(params[:q])
+
+    # ref: https://github.com/activerecord-hackery/ransack#in-your-controller
     books = @q.result.includes(:user)
     books = books.where(id: params[:ids]) if params[:ids].present?
     if params[:tag_list].present?
-      books = books.tagged_with(params[:tag_list], any: true)
+      books = books.tagged_with(params[:tag_list], any: true) # ref: any:https://docs.ruby-lang.org/ja/latest/method/Enumerable/i/any=3f.html
     end
     @books = books.page(params[:page]).per(6)
   end
@@ -70,6 +75,7 @@ class BooksController < ApplicationController
     render :favorite
   end
 
+  # protectedで同じクラスやサブクラスの中であれば呼び出し可能にしている
   private
 
   def book_params
@@ -90,6 +96,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
+  # 現状ユーザーが本の登録者または管理者でない限り リダイレクトする
   def check_role
     redirect_to books_url unless @book.user_id == current_user.id || current_user.admin
   end

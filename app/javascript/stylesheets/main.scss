@@ -97,3 +97,14 @@ a.heart {
   height: 10vw;
   object-fit: cover;
 }
+
+// error404,500
+div#error {
+  width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  border: solid 4px blue;
+  background-color: burlywood;
+  text-align: center;
+}
